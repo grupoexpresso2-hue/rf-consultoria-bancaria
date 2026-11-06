@@ -2,7 +2,7 @@
 
 Site da **RF Consultoria Bancária** (uma empresa **RF GROUP®**): revisão técnica de juros e contratos bancários.
 
-Estética *Private Banking*: azul-marinho, marfim e dourado, com abertura cinematográfica, esfera 3D em canvas, simulador educativo de redução e formulário que continua o atendimento no WhatsApp.
+Visual Dark Tech cinematográfico: fundo aurora em WebGL, vidro líquido, bordas com feixe de luz, scanner de contrato animado, esfera 3D em canvas, títulos palavra por palavra, simulador educativo e formulário que continua o atendimento no WhatsApp. Preparado para telas 2K e 4K.
 
 ## Estrutura
 
