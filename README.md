@@ -9,6 +9,8 @@ Linguagem de filme: abertura em plano-sequência orbital sobre um globo 3D (WebG
 ```
 index.html              # página completa (HTML + CSS + JS)
 Dockerfile              # imagem nginx:alpine que publica o site
+deploy/deploy.sh        # troca segura do container no VPS (com retorno automático)
+.github/workflows/      # publicação automática a cada envio para a main
 nginx.conf              # gzip, cache, cabeçalhos de segurança (CSP) e /healthz
 robots.txt, sitemap.xml # SEO
 img/
@@ -38,6 +40,43 @@ O `Dockerfile` copia `index.html`, `robots.txt`, `sitemap.xml` e a pasta `img/` 
 docker build -t rf-site .
 docker run -p 8080:80 rf-site
 ```
+
+## Publicação automática no VPS (GitHub Actions)
+
+A cada envio para a `main`, o fluxo `.github/workflows/deploy.yml` entra no VPS por SSH e roda `deploy/deploy.sh`, que:
+
+1. atualiza o código no servidor (padrão: `/opt/rf-consultoria-bancaria`);
+2. gera a imagem Docker nova (se falhar, nada muda no ar);
+3. copia do container atual as portas, redes, rótulos (ex.: Traefik) e a política de reinício;
+4. troca o container e confere `/healthz`; se o site novo não responder, **religa a versão anterior** e marca o fluxo como falho.
+
+Enquanto os segredos não forem cadastrados, o fluxo só mostra um aviso e não faz nada.
+
+### Configurar (uma única vez)
+
+1. **Criar uma chave SSH só para publicação** (no seu computador):
+   ```bash
+   ssh-keygen -t ed25519 -f rf-deploy -N "" -C "github-deploy-rf"
+   ```
+2. **Autorizar a chave no VPS**: copie o conteúdo de `rf-deploy.pub` para `~/.ssh/authorized_keys` do usuário que roda o Docker no servidor (ele precisa estar no grupo `docker`).
+3. **Descobrir o nome do container atual do site** (no VPS): `docker ps`.
+4. **Cadastrar no GitHub** em *Settings → Secrets and variables → Actions*:
+
+   | Tipo | Nome | Valor |
+   |---|---|---|
+   | Secret | `VPS_HOST` | IP ou host do VPS |
+   | Secret | `VPS_USER` | usuário SSH |
+   | Secret | `VPS_SSH_KEY` | conteúdo do arquivo `rf-deploy` (chave privada) |
+   | Secret (opcional) | `VPS_PORT` | porta SSH, se não for 22 |
+   | Secret (opcional) | `VPS_KNOWN_HOSTS` | linha do `known_hosts` do servidor (mais seguro que a leitura automática) |
+   | Variable | `CONTAINER_NAME` | nome do container do site (passo 3) |
+   | Variable (opcional) | `DEPLOY_PATH` | pasta do código no servidor |
+   | Variable (opcional) | `HOST_PORT` | porta, só se ainda não existir container |
+   | Variable (opcional) | `SITE_URL` | endereço conferido ao final |
+
+5. **Rodar a primeira vez**: aba *Actions → Publicar no VPS → Run workflow*. Depois disso, cada envio para a `main` publica sozinho.
+
+Apague o arquivo `rf-deploy` do computador depois de cadastrá-lo no GitHub.
 
 ## Publicar no GitHub Pages
 
