@@ -141,6 +141,17 @@ tailwind.config = {
   .intro-rule { width: 0; height: 1px; background: rgba(236,232,223,.5); margin: 22px auto; animation: rule 1.4s cubic-bezier(.16,1,.3,1) .5s forwards; }
   @keyframes rule { to { width: 280px; } }
 
+  /* ===== Herói: tamanhos que respeitam a ALTURA da tela (evita texto invadindo menu e barras) ===== */
+  .hero-title { font-size: clamp(2.1rem, min(6.2vw, 7.6vh), 5.4rem); }
+  .hero-sub   { font-size: clamp(1.9rem, min(5.2vw, 6.8vh), 4.6rem); }
+  .hero-coord { font-size: clamp(2.5rem, min(6.8vw, 9vh), 6rem); }
+  .hs-gap { margin-top: clamp(.9rem, 2.6vh, 1.75rem); }
+  .hs-gap-lg { margin-top: clamp(1.1rem, 3.4vh, 2.25rem); }
+  @media (max-height: 860px) { .hero-card .hero-trust { display: none; } }
+  @media (max-height: 700px) { :root { --bar: 58px; } .hero-lead { font-size: .95rem; } }
+  #waFloat { transition: opacity .4s ease, border-color .3s ease; }
+  #waFloat.off { opacity: 0; pointer-events: none; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .intro { display: none; }
@@ -237,13 +248,13 @@ tailwind.config = {
         <div class="hero-card live" data-card="0">
           <div class="max-w-[46rem]">
             <div class="wide text-ash flex items-center gap-3"><span class="w-1.5 h-1.5 bg-signal"></span>Revisão técnica de contratos bancários</div>
-            <h1 class="display mt-7 text-[2.5rem] sm:text-6xl xl:text-[5.4rem]">Revisão de juros bancários que reduz sua dívida <span class="text-ash">de verdade.</span></h1>
-            <p class="mt-7 text-base sm:text-lg leading-relaxed max-w-xl text-[#B5B1A8]">Análise técnica e estratégia especializada para identificar e eliminar cobranças abusivas do seu contrato bancário, com precisão e transparência.</p>
-            <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <h1 class="display hero-title hs-gap">Revisão de juros bancários que reduz sua dívida <span class="text-ash">de verdade.</span></h1>
+            <p class="hs-gap hero-lead text-base sm:text-lg leading-relaxed max-w-xl text-[#B5B1A8]">Análise técnica e estratégia especializada para identificar e eliminar cobranças abusivas do seu contrato bancário, com precisão e transparência.</p>
+            <div class="hs-gap-lg flex flex-col sm:flex-row gap-3">
               <button type="button" data-open-modal class="btn btn-bone">Solicitar análise do meu caso <span class="arrow">→</span></button>
               <a data-wa="Olá! Vim pelo site e gostaria de falar sobre o meu contrato bancário." class="btn btn-line">Falar no WhatsApp</a>
             </div>
-            <div class="mt-9 flex flex-wrap gap-x-7 gap-y-2 mono text-[11px] tracking-[0.12em] uppercase text-ash">
+            <div class="hero-trust hs-gap-lg flex flex-wrap gap-x-7 gap-y-2 mono text-[11px] tracking-[0.12em] uppercase text-ash">
               <span>Dados protegidos · LGPD</span><span>Atendimento humano</span><span>Primeira conversa sem compromisso</span>
             </div>
           </div>
@@ -251,18 +262,18 @@ tailwind.config = {
 
         <div class="hero-card" data-card="1">
           <div class="max-w-4xl">
-            <p class="display text-4xl sm:text-6xl xl:text-7xl">De longe, todo contrato parece igual.</p>
-            <p class="display text-4xl sm:text-6xl xl:text-7xl mt-3 text-ash">De perto, cada cláusula conta.</p>
+            <p class="display hero-sub">De longe, todo contrato parece igual.</p>
+            <p class="display hero-sub mt-3 text-ash">De perto, cada cláusula conta.</p>
           </div>
         </div>
 
         <div class="hero-card" data-card="2">
           <div class="max-w-3xl">
             <div class="wide text-signal">Alvo travado</div>
-            <div class="numeral mt-5 text-5xl sm:text-7xl xl:text-8xl tnum">26°59′S<br />48°38′W</div>
-            <div class="mt-7 wide text-bone">Balneário Camboriú · SC — Sede administrativa</div>
+            <div class="numeral hero-coord hs-gap tnum">26°59′S<br />48°38′W</div>
+            <div class="hs-gap wide text-bone">Balneário Camboriú · SC — Sede administrativa</div>
             <p class="mt-3 text-[#B5B1A8] max-w-md">Atendimento digital para clientes em todo o Brasil, com acompanhamento direto do responsável técnico.</p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <div class="hs-gap-lg flex flex-col sm:flex-row gap-3">
               <button type="button" data-open-modal class="btn btn-bone">Iniciar análise <span class="arrow">→</span></button>
               <a href="#diagnostico" class="btn btn-line">Continuar</a>
             </div>
@@ -621,7 +632,7 @@ tailwind.config = {
 </footer>
 
 <!-- WhatsApp -->
-<a data-wa="Olá! Vim pelo site e gostaria de atendimento." class="fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-black/85 border border-white/20 hover:border-bone px-4 py-3 rounded-[2px] transition-colors" aria-label="Atendimento pelo WhatsApp">
+<a id="waFloat" data-wa="Olá! Vim pelo site e gostaria de atendimento." class="off fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-black/85 border border-white/20 hover:border-bone px-4 py-3 rounded-[2px]" aria-label="Atendimento pelo WhatsApp">
   <span class="w-1.5 h-1.5 rounded-full bg-[#3FB37F]"></span>
   <span class="wide text-bone">WhatsApp</span>
 </a>
@@ -834,11 +845,13 @@ function renderFaq() {
 
 /* ============ HEADER / MENU / SPY ============ */
 function initHeader() {
-  const header = $('#header'), hero = $('#inicio');
+  const header = $('#header'), hero = $('#inicio'), wa = $('#waFloat');
   const onScroll = () => {
     const pastHero = window.scrollY > hero.offsetHeight - window.innerHeight - 10;
     header.style.background = pastHero ? 'rgba(5,5,5,.92)' : 'transparent';
     header.style.borderBottom = pastHero ? '1px solid rgba(236,232,223,.08)' : '1px solid transparent';
+    // Na abertura o botão flutuante cobria a barra de telemetria; ele só aparece depois dela
+    wa?.classList.toggle('off', !pastHero);
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
