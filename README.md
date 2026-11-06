@@ -8,6 +8,9 @@ Linguagem de filme: abertura em plano-sequência orbital sobre um globo 3D (WebG
 
 ```
 index.html              # página completa (HTML + CSS + JS)
+Dockerfile              # imagem nginx:alpine que publica o site
+nginx.conf              # gzip, cache, cabeçalhos de segurança (CSP) e /healthz
+robots.txt, sitemap.xml # SEO
 img/
   logo-rf.png           # logo RF / RF GROUP®
   terra-noite-nasa.jpg  # Terra à noite (NASA Earth Observatory, domínio público)
@@ -27,6 +30,15 @@ python -m http.server 5510
 ```
 
 e acesse `http://localhost:5510`.
+
+## Publicar com Docker
+
+O `Dockerfile` copia `index.html`, `robots.txt`, `sitemap.xml` e a pasta `img/` para um nginx:
+
+```bash
+docker build -t rf-site .
+docker run -p 8080:80 rf-site
+```
 
 ## Publicar no GitHub Pages
 
