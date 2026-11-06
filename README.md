@@ -14,7 +14,6 @@ robots.txt, sitemap.xml # SEO
 img/
   logo-rf.png           # logo RF / RF GROUP®
   terra-noite-nasa.jpg  # Terra à noite (NASA Earth Observatory, domínio público)
-  capa-reuniao.jpg      # foto da equipe (reserva)
   dr-reinaldo.webp      # foto do responsável técnico
   dor-endividamento.jpg # foto da seção "Diagnóstico"
 ```
