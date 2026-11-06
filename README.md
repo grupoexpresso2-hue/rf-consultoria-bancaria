@@ -2,7 +2,7 @@
 
 Site da **RF Consultoria Bancária** (uma empresa **RF GROUP®**): revisão técnica de juros e contratos bancários.
 
-Visual Dark Tech cinematográfico: fundo aurora em WebGL, vidro líquido, bordas com feixe de luz, scanner de contrato animado, esfera 3D em canvas, títulos palavra por palavra, simulador educativo e formulário que continua o atendimento no WhatsApp. Preparado para telas 2K e 4K.
+Linguagem de filme: abertura em plano-sequência orbital sobre um globo 3D (WebGL) com a imagem real da Terra à noite da NASA, câmera guiada pela rolagem que desce até Balneário Camboriú, enquadramentos fotográficos 2.39:1 com movimento de câmera, timecode, granulação de película e tipografia editorial. Sem ícones e sem efeitos genéricos. Preparado para telas 2K e 4K.
 
 ## Estrutura
 
@@ -10,7 +10,8 @@ Visual Dark Tech cinematográfico: fundo aurora em WebGL, vidro líquido, bordas
 index.html              # página completa (HTML + CSS + JS)
 img/
   logo-rf.png           # logo RF / RF GROUP®
-  capa-reuniao.jpg      # foto de fundo da abertura
+  terra-noite-nasa.jpg  # Terra à noite (NASA Earth Observatory, domínio público)
+  capa-reuniao.jpg      # foto da equipe (reserva)
   dr-reinaldo.webp      # foto do responsável técnico
   dor-endividamento.jpg # foto da seção "Diagnóstico"
 ```
@@ -47,6 +48,7 @@ Para usar o domínio próprio (`rfconsultoriabancaria.com.br`), informe-o em **S
 
 ## Observações
 
+- O globo 3D precisa do site servido por um servidor (GitHub Pages ou `python -m http.server`). Aberto direto do disco, o navegador bloqueia a textura e o site usa um globo alternativo em CSS.
 - Os links de **Política de Privacidade** e **Termos de Uso** apontam para o site atual.
 - Percentuais e valores do site e do simulador são ilustrativos e não representam garantia de resultado.
 

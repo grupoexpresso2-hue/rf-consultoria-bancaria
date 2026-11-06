@@ -5,448 +5,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RF Consultoria Bancária | Revisão Técnica de Juros e Contratos</title>
 <meta name="description" content="Análise técnica de contratos bancários, juros abusivos e cobranças indevidas. Recálculo com base na taxa média do Banco Central. Atendimento 1:1 em todo o Brasil." />
-<meta name="theme-color" content="#090A0F" />
+<meta name="theme-color" content="#050505" />
 <link rel="icon" type="image/png" href="img/logo-rf.png" />
+<link rel="preload" as="image" href="img/terra-noite-nasa.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        bg: '#090A0F',
-        surface: '#12141D',
-        line: 'rgba(255,255,255,0.08)',
-        accent: { blue: '#3B82F6', green: '#10B981', purple: '#8B5CF6' },
-        muted: '#9CA3AF',
+        ink: '#050505',
+        coal: '#0C0C0B',
+        graphite: '#171715',
+        bone: '#ECE8DF',
+        ash: '#8C887F',
+        signal: '#FF5A1F',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        sans: ['Archivo', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
     },
   },
 };
 </script>
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"RF Consultoria Bancária","description":"Consultoria e análise técnica de contratos bancários, juros e cobranças.","url":"https://rfconsultoriabancaria.com.br/","telephone":"+554788631591","email":"contato@rfconsultoriabancaria.com.br","areaServed":"BR","numberOfEmployees":{"@type":"QuantitativeValue","value":12},"address":{"@type":"PostalAddress","streetAddress":"5ª Avenida, 276, Vila Real","postalCode":"88337-010","addressLocality":"Balneário Camboriú","addressRegion":"SC","addressCountry":"BR"}}
 </script>
 <style>
-  :root { color-scheme: dark; --blue: #3B82F6; --green: #10B981; --purple: #8B5CF6; }
+  :root { --ink: #050505; --bone: #ECE8DF; --ash: #8C887F; --signal: #FF5A1F; --line: rgba(236,232,223,.12); --bar: 72px; color-scheme: dark; }
   html { scroll-behavior: smooth; }
-  body { background: #090A0F; color: #E5E7EB; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { background: var(--ink); color: #C9C5BC; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--signal); color: #050505; }
   .tnum { font-variant-numeric: tabular-nums; }
-  ::selection { background: rgba(59,130,246,.4); color: #fff; }
 
   /* ===== Escala para telas 2K / 4K ===== */
-  @media (min-width: 1920px) { html { font-size: 18px; } }
-  @media (min-width: 2560px) { html { font-size: 22px; } }
-  @media (min-width: 3200px) { html { font-size: 28px; } }
+  @media (min-width: 1920px) { html { font-size: 18px; } :root { --bar: 80px; } }
+  @media (min-width: 2560px) { html { font-size: 22px; } :root { --bar: 96px; } }
+  @media (min-width: 3200px) { html { font-size: 28px; } :root { --bar: 120px; } }
 
-  /* ===== Tipografia ===== */
-  .text-gradient { background: linear-gradient(100deg, #fff 0%, #93C5FD 35%, #A78BFA 65%, #6EE7B7 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 8s ease-in-out infinite; }
-  @keyframes shimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-  .tag { font-family: "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
-  .word { display: inline-block; opacity: 0; filter: blur(12px); transform: translateY(.35em); transition: opacity .8s cubic-bezier(.2,.7,.2,1), filter .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
-  .split.on .word { opacity: 1; filter: none; transform: none; }
-
-  /* ===== Vidro líquido ===== */
-  .lglass { position: relative; background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.015) 60%); backdrop-filter: blur(22px) saturate(1.7); -webkit-backdrop-filter: blur(22px) saturate(1.7);
-    border: 1px solid rgba(255,255,255,.11); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(255,255,255,.04), 0 30px 60px -30px rgba(0,0,0,.75); }
-  .lglass::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(120% 60% at 10% 0%, rgba(255,255,255,.12), transparent 45%); }
-
-  /* ===== Borda com feixe de luz ===== */
-  @property --a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-  .beam { position: relative; isolation: isolate; }
-  .beam::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; z-index: -1;
-    background: conic-gradient(from var(--a), transparent 0 68%, #3B82F6 78%, #8B5CF6 86%, #10B981 93%, transparent 100%);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: beam 5s linear infinite; }
-  @keyframes beam { to { --a: 360deg; } }
-
-  /* ===== Cards com holofote ===== */
-  .spot { position: relative; background: rgba(18,20,29,.72); border: 1px solid rgba(255,255,255,.08); border-radius: 1.25rem; overflow: hidden; transition: border-color .3s ease, transform .3s ease; }
-  .spot::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
-    background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 50%), rgba(59,130,246,.16), transparent 42%); opacity: 0; transition: opacity .3s ease; }
-  .spot::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; padding: 1px;
-    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(139,92,246,.7), transparent 40%);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .3s ease; }
-  .spot:hover::before, .spot:hover::after { opacity: 1; }
-  .spot:hover { transform: translateY(-3px); }
+  /* ===== Tipografia de cinema ===== */
+  .display { font-stretch: 112%; font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: var(--bone); }
+  .wide { font-stretch: 125%; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: .68rem; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .numeral { font-stretch: 125%; font-weight: 300; letter-spacing: -0.04em; line-height: .9; color: var(--bone); }
+  .chapter { display: flex; align-items: center; gap: 1rem; }
+  .chapter::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
   /* ===== Botões ===== */
-  .btn-primary { position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #8B5CF6); box-shadow: 0 12px 34px -12px rgba(59,130,246,.8), inset 0 1px 0 rgba(255,255,255,.25); transition: box-shadow .25s ease, filter .25s ease; }
-  .btn-primary::after { content: ""; position: absolute; top: 0; bottom: 0; width: 40%; left: -60%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); animation: sheen 4.5s ease-in-out infinite; }
-  @keyframes sheen { 0%, 60% { left: -60%; } 100% { left: 130%; } }
-  .btn-primary:hover { filter: brightness(1.1); box-shadow: 0 16px 44px -12px rgba(139,92,246,.9), inset 0 1px 0 rgba(255,255,255,.3); }
-  .btn-green { background: #10B981; box-shadow: 0 12px 30px -12px rgba(16,185,129,.85); transition: background .25s ease; }
-  .btn-green:hover { background: #059669; }
-  .btn-ghost { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background .25s ease, border-color .25s ease; }
-  .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.26); }
-  [data-magnetic] { transition: transform .25s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .9rem; padding: 1.05rem 1.7rem; border-radius: 2px;
+    font-stretch: 118%; font-weight: 600; font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; transition: background .3s ease, color .3s ease, border-color .3s ease; }
+  .btn-bone { background: var(--bone); color: #050505; }
+  .btn-bone:hover { background: #fff; }
+  .btn-line { border: 1px solid rgba(236,232,223,.32); color: var(--bone); }
+  .btn-line:hover { border-color: var(--bone); background: rgba(236,232,223,.05); }
+  .btn .arrow { display: inline-block; transition: transform .3s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .link-line { position: relative; color: var(--bone); }
+  .link-line::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform-origin: left; transition: transform .35s ease; }
+  .link-line:hover::after { transform: scaleX(.3); }
 
-  .field { background: rgba(9,10,15,.7); border: 1px solid rgba(255,255,255,.1); transition: border-color .2s ease, box-shadow .2s ease; }
-  .field:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59,130,246,.22); }
+  .field { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(236,232,223,.22); color: var(--bone); padding: .85rem 0; font-size: 1.05rem; border-radius: 0; transition: border-color .25s ease; }
+  .field::placeholder { color: #55534E; }
+  .field:focus { outline: none; border-bottom-color: var(--bone); }
+  select.field { appearance: none; -webkit-appearance: none; cursor: pointer;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ash) 50%), linear-gradient(135deg, var(--ash) 50%, transparent 50%);
+    background-position: calc(100% - 10px) 55%, calc(100% - 5px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
+  select.field option { background: #0C0C0B; color: var(--bone); }
 
-  /* ===== Camada cinematográfica ===== */
-  .grain { position: fixed; inset: -50%; z-index: 70; pointer-events: none; opacity: .06;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    animation: grain 1s steps(6) infinite; }
-  @keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-5%,3%)} 40%{transform:translate(4%,-6%)} 60%{transform:translate(-3%,5%)} 80%{transform:translate(6%,2%)} 100%{transform:translate(0,0)} }
-  .vignette { position: fixed; inset: 0; z-index: 69; pointer-events: none; background: radial-gradient(ellipse at center, transparent 58%, rgba(0,0,0,.5) 100%); }
-  .cursor-glow { position: fixed; left: 0; top: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; z-index: 1; pointer-events: none; border-radius: 50%;
-    background: radial-gradient(circle, rgba(59,130,246,.11), rgba(139,92,246,.05) 40%, transparent 70%); will-change: transform; opacity: 0; transition: opacity .4s ease; }
-  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 80; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #3B82F6, #8B5CF6, #10B981); box-shadow: 0 0 12px rgba(59,130,246,.8); }
+  /* ===== Película ===== */
+  .grain { position: fixed; inset: -50%; z-index: 70; pointer-events: none; opacity: .07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation: grain .9s steps(5) infinite; }
+  @keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-4%,3%)} 40%{transform:translate(3%,-5%)} 60%{transform:translate(-2%,4%)} 80%{transform:translate(5%,1%)} 100%{transform:translate(0,0)} }
+  .vignette { position: fixed; inset: 0; z-index: 69; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%); }
 
-  .grid-bg { background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%); }
-  .hero-photo { mix-blend-mode: luminosity; opacity: .22; transform-origin: 60% 40%; animation: kenburns 30s ease-in-out infinite alternate; filter: contrast(1.2); }
-  @keyframes kenburns { from { transform: scale(1.06); } to { transform: scale(1.2) translate3d(-2%,-1.5%,0); } }
-  .aurora-fallback { background: radial-gradient(60% 50% at 25% 30%, rgba(59,130,246,.35), transparent 70%), radial-gradient(50% 50% at 80% 20%, rgba(139,92,246,.3), transparent 70%), radial-gradient(50% 40% at 60% 90%, rgba(16,185,129,.18), transparent 70%), #090A0F; }
+  /* ===== Herói: plano-sequência orbital ===== */
+  .hero-card { position: absolute; inset: 0; padding: 0 1.5rem; display: flex; flex-direction: column; justify-content: center; opacity: 0; pointer-events: none; will-change: opacity, transform; }
+  .hero-card.live { pointer-events: auto; }
+  @media (max-width: 639px) { .hero-card { justify-content: flex-start; padding-top: 2.25rem; } }
+  @media (min-width: 640px) { .hero-card { padding: 0 3rem; } }
+  #globe { opacity: 0; transition: opacity 2.4s ease; }
+  #globe.ready { opacity: 1; }
+  .fallback-earth { position: absolute; border-radius: 50%; background-image: url(img/terra-noite-nasa.jpg); background-size: 200% 100%; background-repeat: repeat-x;
+    box-shadow: inset -60px -30px 120px rgba(0,0,0,.9), inset 12px 8px 40px rgba(140,165,220,.12), 0 0 70px rgba(110,140,210,.18);
+    filter: saturate(.6) contrast(1.15); animation: spin-earth 160s linear infinite; }
+  @keyframes spin-earth { from { background-position: 0 50%; } to { background-position: calc(var(--d, 800px) * -2) 50%; } }
+  .corner { position: absolute; width: 22px; height: 22px; border-color: rgba(236,232,223,.55); pointer-events: none; }
+  .corner.tl { border-top: 1px solid; border-left: 1px solid; } .corner.tr { border-top: 1px solid; border-right: 1px solid; }
+  .corner.bl { border-bottom: 1px solid; border-left: 1px solid; } .corner.br { border-bottom: 1px solid; border-right: 1px solid; }
 
-  /* HUD (cantos) */
-  .hud { position: absolute; width: 18px; height: 18px; border-color: rgba(59,130,246,.9); pointer-events: none; }
-  .hud.tl { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; border-top-left-radius: 6px; }
-  .hud.tr { top: -1px; right: -1px; border-top: 2px solid; border-right: 2px solid; border-top-right-radius: 6px; }
-  .hud.bl { bottom: -1px; left: -1px; border-bottom: 2px solid; border-left: 2px solid; border-bottom-left-radius: 6px; }
-  .hud.br { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; border-bottom-right-radius: 6px; }
+  /* ===== Enquadramentos fotográficos ===== */
+  .frame { position: relative; overflow: hidden; background: #0C0C0B; }
+  .frame img { will-change: transform; transform: scale(1.15); filter: contrast(1.08) saturate(.78); }
+  .frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.55) 100%), linear-gradient(180deg, rgba(0,0,0,.15), transparent 30%, transparent 65%, rgba(0,0,0,.65)); }
+  .meta { position: absolute; z-index: 2; font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .12em; color: rgba(236,232,223,.75); text-transform: uppercase; }
 
-  /* Scanner de contrato */
-  .scan-beam { position: absolute; left: 0; right: 0; height: 64px; top: -64px; pointer-events: none;
-    background: linear-gradient(180deg, transparent, rgba(59,130,246,.18) 70%, rgba(147,197,253,.9) 98%, transparent);
-    filter: drop-shadow(0 0 10px rgba(59,130,246,.9)); }
-  .clause { height: 8px; border-radius: 4px; background: rgba(255,255,255,.08); transition: background .4s ease, box-shadow .4s ease; }
-  .clause.flag { background: rgba(248,113,113,.75); box-shadow: 0 0 14px rgba(248,113,113,.6); }
-  .clause.ok { background: rgba(16,185,129,.4); }
-  .flag-pill { opacity: 0; transform: translateX(10px); transition: opacity .35s ease, transform .35s ease; }
-  .flag-pill.on { opacity: 1; transform: none; }
+  /* ===== Revelações ===== */
+  .title-reveal { overflow: hidden; padding-bottom: .08em; }
+  .title-reveal > span { display: block; transform: translateY(108%); transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+  .title-reveal.on > span { transform: none; }
+  .fade { opacity: 0; transform: translateY(18px); transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1); }
+  .fade.on { opacity: 1; transform: none; }
 
-  .reveal { opacity: 0; transform: translateY(24px); filter: blur(10px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .9s cubic-bezier(.2,.7,.2,1); }
-  .reveal.visible { opacity: 1; transform: none; filter: none; }
-  .tilt { transform-style: preserve-3d; transition: transform .3s ease-out; will-change: transform; }
+  .row { border-top: 1px solid var(--line); transition: background .35s ease; }
+  .row:hover { background: rgba(236,232,223,.025); }
+  .row:hover .row-mark { background: var(--signal); }
+  .row-mark { width: 6px; height: 6px; background: rgba(236,232,223,.25); transition: background .35s ease; }
 
-  .ticker { animation: ticker 40s linear infinite; }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .pulse-dot { box-shadow: 0 0 0 0 rgba(16,185,129,.7); animation: pulse 2s infinite; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
-
-  .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1); }
   .faq-item.open .faq-body { grid-template-rows: 1fr; }
-  .faq-item.open .faq-icon { transform: rotate(45deg); color: #3B82F6; }
-  .faq-icon { transition: transform .25s ease; }
+  .faq-sign { transition: transform .35s ease; }
+  .faq-item.open .faq-sign { transform: rotate(45deg); color: var(--signal); }
 
   .nav-link { position: relative; }
-  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #3B82F6, #8B5CF6); transform: scaleX(0); transition: transform .25s ease; }
-  .nav-link.active { color: #fff; }
+  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 1px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+  .nav-link.active { color: var(--bone); }
   .nav-link.active::after { transform: scaleX(1); }
 
-  .bar-fill { transition: width 1.1s cubic-bezier(.2,.7,.2,1); }
-  .ring-fg { transition: stroke-dashoffset 1.4s cubic-bezier(.2,.7,.2,1); }
-  .tl-fill { transform-origin: top; transform: scaleY(0); }
-  @media (min-width: 1024px) { .tl-fill { transform-origin: left; transform: scaleX(0); } }
+  .line-fill { transition: width 1.3s cubic-bezier(.16,1,.3,1); }
+  .tl-fill { transform-origin: left; transform: scaleX(0); }
+  .cta-earth { background-image: url(img/terra-noite-nasa.jpg); background-size: 260% auto; background-position: 25% 68%; background-repeat: no-repeat; filter: saturate(.55) contrast(1.1) brightness(1.1); animation: pan 46s ease-in-out infinite alternate; }
+  @keyframes pan { from { background-position: 22% 64%; transform: scale(1); } to { background-position: 30% 71%; transform: scale(1.06); } }
 
-  /* Abertura */
-  .intro { position: fixed; inset: 0; z-index: 100; background: #000; display: grid; place-items: center; cursor: pointer; animation: introOut .8s ease 2.7s forwards; overflow: hidden; }
+  /* Abertura (claquete) */
+  .intro { position: fixed; inset: 0; z-index: 100; background: #000; display: grid; place-items: center; cursor: pointer; animation: introOut .9s ease 2.6s forwards; }
   .intro.done { animation: introOut .5s ease forwards; }
   .intro.skip { display: none; }
   @keyframes introOut { to { opacity: 0; visibility: hidden; } }
-  .intro-bar { position: absolute; left: 0; right: 0; height: 11vh; background: #000; z-index: 2; border-color: rgba(59,130,246,.35); }
-  .intro-bar.top { top: 0; border-bottom: 1px solid; } .intro-bar.bottom { bottom: 0; border-top: 1px solid; }
-  .intro-scan { position: absolute; left: 0; right: 0; height: 2px; top: 0; background: linear-gradient(90deg, transparent, #3B82F6, #8B5CF6, transparent); box-shadow: 0 0 20px #3B82F6; animation: introScan 1.6s cubic-bezier(.6,0,.2,1) .1s forwards; }
-  @keyframes introScan { from { top: 10%; opacity: 1; } to { top: 90%; opacity: 0; } }
-  .intro-logo { text-align: center; opacity: 0; transform: scale(.92); filter: blur(14px); animation: introLogo 1.3s cubic-bezier(.2,.7,.2,1) .35s forwards; }
-  @keyframes introLogo { to { opacity: 1; transform: none; filter: none; } }
-  .intro-logo img { width: 92px; height: 92px; border-radius: 22px; margin: 0 auto; box-shadow: 0 0 0 1px rgba(59,130,246,.5), 0 0 90px rgba(59,130,246,.55); }
-  .intro-brand { margin-top: 22px; color: #fff; font-weight: 800; letter-spacing: .55em; padding-left: .55em; font-size: 1.15rem; }
-  .intro-sub { margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: .68rem; letter-spacing: .3em; color: #10B981; }
-  .intro-sub .cursor::after { content: "▋"; animation: blink 1s steps(1) infinite; margin-left: 3px; }
-  @keyframes blink { 50% { opacity: 0; } }
+  .intro-inner { text-align: center; opacity: 0; animation: introIn 1.2s ease .2s forwards; }
+  @keyframes introIn { to { opacity: 1; } }
+  .intro-rule { width: 0; height: 1px; background: rgba(236,232,223,.5); margin: 22px auto; animation: rule 1.4s cubic-bezier(.16,1,.3,1) .5s forwards; }
+  @keyframes rule { to { width: 280px; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .intro { display: none; }
-    .reveal, .word, .flag-pill { opacity: 1; transform: none; filter: none; }
-    .cursor-glow { display: none; }
+    .title-reveal > span, .fade { transform: none; opacity: 1; }
+    .frame img { transform: none !important; }
   }
 </style>
 </head>
-<body class="font-sans">
+<body>
 
-<!-- Abertura cinematográfica -->
+<!-- Abertura: claquete -->
 <div id="intro" class="intro" aria-hidden="true">
-  <div class="intro-bar top"></div>
-  <div class="intro-scan"></div>
-  <div class="intro-logo">
-    <img src="img/logo-rf.png" alt="" width="92" height="92" />
-    <div class="intro-brand">RF GROUP<sup class="text-xs font-normal">®</sup></div>
-    <div class="intro-sub"><span id="introText">INICIALIZANDO ANÁLISE TÉCNICA</span><span class="cursor"></span></div>
+  <div class="intro-inner">
+    <div class="wide text-ash">Cena 01 · Tomada 01</div>
+    <div class="intro-rule"></div>
+    <div class="display text-3xl sm:text-4xl" style="font-stretch:125%;letter-spacing:.32em;padding-left:.32em">RF GROUP<sup class="text-xs align-super">®</sup></div>
+    <div class="intro-rule"></div>
+    <div class="mono text-xs text-ash tnum" data-tc>00:00:00:00</div>
   </div>
-  <div class="intro-bar bottom"></div>
 </div>
-<div id="progress" class="progress" aria-hidden="true"></div>
-<div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 
 <!-- ============ HEADER ============ -->
-<header class="fixed top-0 inset-x-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <nav id="navShell" class="mt-3 flex items-center justify-between rounded-2xl px-4 py-3 border border-transparent transition-all duration-300">
-      <a href="#inicio" class="flex items-center gap-3 min-w-0" aria-label="RF Consultoria Bancária - início">
-        <span class="relative shrink-0">
-          <img src="img/logo-rf.png" alt="Logo RF" width="40" height="40" class="w-10 h-10 rounded-xl ring-1 ring-white/15" />
-          <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-accent-green border-2 border-bg pulse-dot"></span>
-        </span>
-        <span class="leading-tight min-w-0">
-          <span class="block font-semibold text-white truncate">RF Consultoria</span>
-          <span class="block text-[10px] font-mono text-muted tracking-[0.25em] uppercase">Bancária</span>
-        </span>
-      </a>
-      <div class="hidden lg:flex items-center gap-7 text-sm text-muted">
-        <a href="#contratos" data-spy="contratos" class="nav-link hover:text-white transition-colors">Contratos</a>
-        <a href="#simulador" data-spy="simulador" class="nav-link hover:text-white transition-colors">Simulador</a>
-        <a href="#como-funciona" data-spy="como-funciona" class="nav-link hover:text-white transition-colors">Como funciona</a>
-        <a href="#beneficios" data-spy="beneficios" class="nav-link hover:text-white transition-colors">Benefícios</a>
-        <a href="#para-quem" data-spy="para-quem" class="nav-link hover:text-white transition-colors">Para quem é</a>
-        <a href="#faq" data-spy="faq" class="nav-link hover:text-white transition-colors">FAQ</a>
-      </div>
-      <div class="flex items-center gap-2">
-        <button type="button" data-open-modal data-magnetic class="hidden sm:inline-flex btn-primary items-center gap-2 text-white text-sm font-semibold px-4 py-2.5 rounded-xl">
-          <i data-lucide="scan-search" class="w-4 h-4"></i> Analisar contrato
-        </button>
-        <button id="menuBtn" type="button" class="lg:hidden btn-ghost w-10 h-10 grid place-items-center rounded-xl" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
-          <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
-      </div>
+<header id="header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-500" style="height: var(--bar)">
+  <div class="h-full max-w-[1600px] mx-auto px-5 sm:px-8 flex items-center justify-between">
+    <a href="#inicio" class="flex items-center gap-3.5 min-w-0" aria-label="RF Consultoria Bancária - início">
+      <img src="img/logo-rf.png" alt="Logo RF" width="34" height="34" class="w-[34px] h-[34px] rounded-[3px]" />
+      <span class="leading-none">
+        <span class="block wide text-bone" style="letter-spacing:.22em">RF Consultoria</span>
+        <span class="block mono text-[10px] text-ash mt-1.5 tracking-[0.2em]">BANCÁRIA</span>
+      </span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-9 wide text-ash" aria-label="Seções">
+      <a href="#contratos" data-spy="contratos" class="nav-link hover:text-bone transition-colors">Contratos</a>
+      <a href="#simulador" data-spy="simulador" class="nav-link hover:text-bone transition-colors">Simulador</a>
+      <a href="#como-funciona" data-spy="como-funciona" class="nav-link hover:text-bone transition-colors">Método</a>
+      <a href="#para-quem" data-spy="para-quem" class="nav-link hover:text-bone transition-colors">Para quem é</a>
+      <a href="#faq" data-spy="faq" class="nav-link hover:text-bone transition-colors">Dúvidas</a>
     </nav>
-    <div id="mobileMenu" class="hidden lg:hidden mt-2 lglass rounded-2xl p-3">
-      <div class="relative z-10 grid gap-1 text-sm">
-        <a href="#contratos" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Contratos analisados</a>
-        <a href="#simulador" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Simulador</a>
-        <a href="#como-funciona" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Como funciona</a>
-        <a href="#beneficios" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Benefícios</a>
-        <a href="#para-quem" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Para quem é</a>
-        <a href="#faq" class="px-3 py-2.5 rounded-lg hover:bg-white/5">Dúvidas (FAQ)</a>
-        <button type="button" data-open-modal class="mt-2 btn-primary text-white font-semibold px-4 py-3 rounded-xl">Solicitar análise do meu caso</button>
-      </div>
+    <div class="flex items-center gap-3">
+      <button type="button" data-open-modal class="hidden sm:inline-flex btn btn-line !py-3 !px-5">Analisar contrato</button>
+      <button id="menuBtn" type="button" class="lg:hidden wide text-bone border border-white/20 px-3.5 py-2.5 rounded-[2px]" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden bg-ink border-y border-white/10">
+    <div class="px-5 py-4 grid gap-1 wide text-bone">
+      <a href="#contratos" class="py-3 border-b border-white/10">Contratos</a>
+      <a href="#simulador" class="py-3 border-b border-white/10">Simulador</a>
+      <a href="#como-funciona" class="py-3 border-b border-white/10">Método</a>
+      <a href="#para-quem" class="py-3 border-b border-white/10">Para quem é</a>
+      <a href="#faq" class="py-3 border-b border-white/10">Dúvidas</a>
+      <button type="button" data-open-modal class="mt-3 btn btn-bone">Solicitar análise do meu caso</button>
     </div>
   </div>
 </header>
 
 <main>
-<!-- ============ HERO ============ -->
-<section id="inicio" class="relative min-h-[100svh] flex items-center pt-32 sm:pt-36 pb-24 overflow-hidden">
-  <div id="heroMedia" class="absolute inset-0" aria-hidden="true">
-    <div class="absolute inset-0 aurora-fallback"></div>
-    <canvas id="aurora" class="absolute inset-0 w-full h-full"></canvas>
-    <div class="absolute inset-0 overflow-hidden"><img src="img/capa-reuniao.jpg" width="1600" height="893" alt="" class="hero-photo w-full h-full object-cover" fetchpriority="high" onerror="this.remove()" /></div>
-  </div>
-  <canvas id="dataSphere" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
-  <div class="absolute inset-0 bg-gradient-to-r from-bg via-bg/75 to-bg/20" aria-hidden="true"></div>
-  <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
-  <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none" aria-hidden="true"></div>
+<!-- ============ HERÓI: PLANO-SEQUÊNCIA ORBITAL ============ -->
+<section id="inicio" class="relative" style="height: 330vh">
+  <div id="heroStage" class="sticky top-0 h-[100svh] overflow-hidden bg-black">
+    <canvas id="stars" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    <canvas id="globe" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    <div id="globeFallback" class="hidden absolute inset-0" aria-hidden="true"><div class="fallback-earth"></div></div>
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.35) 45%, transparent 70%)" aria-hidden="true"></div>
 
-  <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-14 items-center">
-    <div class="lg:col-span-7">
-      <div class="reveal inline-flex items-center gap-2.5 rounded-full lglass px-3.5 py-1.5 text-xs text-gray-300">
-        <span class="relative z-10 w-2 h-2 rounded-full bg-accent-green pulse-dot"></span>
-        <span class="relative z-10 font-mono">100% focada em contratos, juros e cobranças bancárias</span>
-      </div>
-      <h1 data-split class="split mt-7 text-[2.6rem] leading-[1.02] sm:text-6xl xl:text-[5.2rem] font-extrabold tracking-[-0.035em] text-white">
-        Revisão de juros bancários que <span class="text-gradient">reduz sua dívida</span> de verdade.
-      </h1>
-      <p class="reveal mt-7 text-lg text-gray-400 max-w-xl leading-relaxed" style="transition-delay:.5s">
-        Análise técnica e estratégia especializada para identificar e eliminar cobranças abusivas do seu contrato bancário — com precisão de dados e transparência total.
-      </p>
-      <div class="reveal mt-9 flex flex-col sm:flex-row gap-3" style="transition-delay:.65s">
-        <button type="button" data-open-modal data-magnetic class="btn-primary inline-flex justify-center items-center gap-2 text-white font-semibold px-7 py-4 rounded-xl">
-          <i data-lucide="file-search" class="w-5 h-5"></i> Solicitar análise do meu caso
-        </button>
-        <a data-wa="Olá! Vim pelo site e gostaria de falar sobre o meu contrato bancário." data-magnetic class="btn-ghost inline-flex justify-center items-center gap-2 text-white font-semibold px-7 py-4 rounded-xl">
-          <i data-lucide="message-circle" class="w-5 h-5 text-accent-green"></i> Falar no WhatsApp agora
-        </a>
-      </div>
-      <ul class="reveal mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400" style="transition-delay:.8s">
-        <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-accent-green"></i> Dados protegidos (LGPD)</li>
-        <li class="flex items-center gap-2"><i data-lucide="user-check" class="w-4 h-4 text-accent-blue"></i> Atendimento humano, sem robôs</li>
-        <li class="flex items-center gap-2"><i data-lucide="handshake" class="w-4 h-4 text-accent-purple"></i> Primeira conversa sem compromisso</li>
-      </ul>
-      <div class="reveal mt-10 inline-flex items-center gap-3.5 rounded-2xl lglass pl-2 pr-5 py-2" style="transition-delay:.95s">
-        <img src="img/logo-rf.png" alt="Logo RF GROUP" width="44" height="44" class="relative z-10 w-11 h-11 rounded-xl" />
-        <span class="relative z-10 leading-tight">
-          <span class="block text-[10px] font-mono uppercase tracking-[0.25em] text-muted">Uma empresa do grupo</span>
-          <span class="block text-lg font-bold tracking-[0.2em] text-white">RF GROUP<sup class="text-xs font-normal ml-0.5 text-accent-blue">®</sup></span>
-        </span>
+    <!-- Barras de cinema -->
+    <div class="absolute inset-x-0 top-0 bg-black border-b border-white/[0.06]" style="height: var(--bar)" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 bg-black border-t border-white/[0.06] z-10" style="height: var(--bar)">
+      <div class="h-full max-w-[1600px] mx-auto px-5 sm:px-8 flex items-center justify-between gap-6 mono text-[10px] sm:text-[11px] tracking-[0.14em] text-ash uppercase">
+        <div class="flex gap-5 sm:gap-8 tnum">
+          <span>Lat <span id="hudLat" class="text-bone">—</span></span>
+          <span>Lon <span id="hudLon" class="text-bone">—</span></span>
+          <span class="hidden sm:inline">Alt <span id="hudAlt" class="text-bone">—</span></span>
+        </div>
+        <span id="scrollCue" class="hidden md:inline text-bone/80 transition-opacity duration-500">Role para aproximar</span>
+        <div class="flex gap-5 tnum">
+          <span class="hidden sm:inline">A001 · 24 fps</span>
+          <span>TC <span class="text-bone" data-tc>00:00:00:00</span></span>
+        </div>
       </div>
     </div>
 
-    <!-- Scanner de contrato (demonstração) -->
-    <div class="lg:col-span-5 reveal" style="transition-delay:.3s; perspective: 1400px;">
-      <div class="relative tilt" data-tilt>
-        <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-accent-blue/30 via-accent-purple/20 to-accent-green/20 blur-3xl" aria-hidden="true"></div>
-        <div class="beam relative rounded-3xl lglass overflow-hidden">
-          <div class="relative z-10 flex items-center justify-between px-5 py-3.5 border-b border-white/10">
-            <div class="flex items-center gap-2.5">
-              <span class="w-7 h-7 rounded-lg grid place-items-center bg-accent-blue/15 border border-accent-blue/30"><i data-lucide="cpu" class="w-4 h-4 text-accent-blue"></i></span>
-              <span class="text-sm font-semibold text-white">RF Audit Engine</span>
-            </div>
-            <span class="font-mono text-[10px] px-2 py-1 rounded-md bg-accent-green/10 text-accent-green border border-accent-green/25 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-green pulse-dot"></span>ESCANEANDO</span>
-          </div>
+    <!-- Marcas de enquadramento -->
+    <div class="absolute pointer-events-none" style="inset: calc(var(--bar) + 18px) 18px calc(var(--bar) + 18px) 18px" aria-hidden="true">
+      <span class="corner tl" style="top:0;left:0"></span><span class="corner tr" style="top:0;right:0"></span>
+      <span class="corner bl" style="bottom:0;left:0"></span><span class="corner br" style="bottom:0;right:0"></span>
+    </div>
 
-          <div class="relative z-10 grid grid-cols-[1fr,auto] gap-4 p-5">
-            <!-- Documento -->
-            <div class="relative rounded-xl bg-bg/70 border border-white/10 p-4 overflow-hidden min-h-[260px]">
-              <span class="hud tl"></span><span class="hud tr"></span><span class="hud bl"></span><span class="hud br"></span>
-              <div class="font-mono text-[10px] text-muted mb-3 flex justify-between"><span>contrato_ccb.pdf</span><span id="scanPct" class="text-accent-blue tnum">0%</span></div>
-              <div id="clauses" class="space-y-[9px]"></div>
-              <div id="scanBeam" class="scan-beam" aria-hidden="true"></div>
-            </div>
-            <!-- Alertas -->
-            <div class="w-[130px] sm:w-[170px] space-y-2.5 text-[11px]" id="flags">
-              <div class="flag-pill rounded-lg border border-red-400/30 bg-red-400/10 p-2.5"><div class="font-mono text-red-300">! JUROS</div><div class="text-gray-300 mt-0.5 leading-snug">Acima da média BACEN</div></div>
-              <div class="flag-pill rounded-lg border border-red-400/30 bg-red-400/10 p-2.5"><div class="font-mono text-red-300">! SEGURO</div><div class="text-gray-300 mt-0.5 leading-snug">Embutido sem autorização clara</div></div>
-              <div class="flag-pill rounded-lg border border-red-400/30 bg-red-400/10 p-2.5"><div class="font-mono text-red-300">! TARIFA</div><div class="text-gray-300 mt-0.5 leading-snug">Identificada no CET</div></div>
-              <div class="flag-pill rounded-lg border border-accent-green/30 bg-accent-green/10 p-2.5"><div class="font-mono text-accent-green">✓ RECÁLCULO</div><div class="text-gray-300 mt-0.5 leading-snug">Relatório técnico pronto</div></div>
-            </div>
-          </div>
+    <!-- Cartelas -->
+    <div class="absolute inset-x-0" style="top: var(--bar); bottom: var(--bar)">
+      <div class="relative h-full max-w-[1600px] mx-auto">
 
-          <div class="relative z-10 grid grid-cols-3 border-t border-white/10">
-            <div class="p-4 border-r border-white/10">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-white tnum"><span data-count="100">0</span>%</div>
-              <div class="text-[11px] text-muted mt-1 leading-tight">Foco em passivos bancários</div>
+        <div class="hero-card live" data-card="0">
+          <div class="max-w-[46rem]">
+            <div class="wide text-ash flex items-center gap-3"><span class="w-1.5 h-1.5 bg-signal"></span>Revisão técnica de contratos bancários</div>
+            <h1 class="display mt-7 text-[2.5rem] sm:text-6xl xl:text-[5.4rem]">Revisão de juros bancários que reduz sua dívida <span class="text-ash">de verdade.</span></h1>
+            <p class="mt-7 text-base sm:text-lg leading-relaxed max-w-xl text-[#B5B1A8]">Análise técnica e estratégia especializada para identificar e eliminar cobranças abusivas do seu contrato bancário, com precisão e transparência.</p>
+            <div class="mt-9 flex flex-col sm:flex-row gap-3">
+              <button type="button" data-open-modal class="btn btn-bone">Solicitar análise do meu caso <span class="arrow">→</span></button>
+              <a data-wa="Olá! Vim pelo site e gostaria de falar sobre o meu contrato bancário." class="btn btn-line">Falar no WhatsApp</a>
             </div>
-            <div class="p-4 border-r border-white/10">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-white">1:1</div>
-              <div class="text-[11px] text-muted mt-1 leading-tight">Atendimento individualizado</div>
-            </div>
-            <div class="p-4">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-accent-blue">BACEN</div>
-              <div class="text-[11px] text-muted mt-1 leading-tight">Recálculo pela taxa média</div>
+            <div class="mt-9 flex flex-wrap gap-x-7 gap-y-2 mono text-[11px] tracking-[0.12em] uppercase text-ash">
+              <span>Dados protegidos · LGPD</span><span>Atendimento humano</span><span>Primeira conversa sem compromisso</span>
             </div>
           </div>
         </div>
-        <p class="mt-4 text-[11px] text-muted/70 font-mono text-center">* Demonstração ilustrativa do processo de análise.</p>
+
+        <div class="hero-card" data-card="1">
+          <div class="max-w-4xl">
+            <p class="display text-4xl sm:text-6xl xl:text-7xl">De longe, todo contrato parece igual.</p>
+            <p class="display text-4xl sm:text-6xl xl:text-7xl mt-3 text-ash">De perto, cada cláusula conta.</p>
+          </div>
+        </div>
+
+        <div class="hero-card" data-card="2">
+          <div class="max-w-3xl">
+            <div class="wide text-signal">Alvo travado</div>
+            <div class="numeral mt-5 text-5xl sm:text-7xl xl:text-8xl tnum">26°59′S<br />48°38′W</div>
+            <div class="mt-7 wide text-bone">Balneário Camboriú · SC — Sede administrativa</div>
+            <p class="mt-3 text-[#B5B1A8] max-w-md">Atendimento digital para clientes em todo o Brasil, com acompanhamento direto do responsável técnico.</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <button type="button" data-open-modal class="btn btn-bone">Iniciar análise <span class="arrow">→</span></button>
+              <a href="#diagnostico" class="btn btn-line">Continuar</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- Ticker -->
-<div class="relative border-y border-line bg-surface/40 backdrop-blur overflow-hidden py-4" aria-hidden="true">
-  <div class="ticker flex gap-12 whitespace-nowrap w-max font-mono text-xs tracking-widest text-muted">
-    <div class="flex gap-12" id="tickerItems"></div>
-    <div class="flex gap-12" id="tickerItems2"></div>
-  </div>
-</div>
-
-<!-- ============ DIAGNÓSTICO ============ -->
-<section class="relative py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-14 items-center">
-    <div class="reveal relative order-2 lg:order-1">
-      <div class="relative rounded-3xl overflow-hidden border border-line aspect-[4/3] bg-surface">
-        <img src="img/dor-endividamento.jpg" width="1024" height="768" alt="Empresário preocupado analisando contrato e parcelas de dívida bancária" class="w-full h-full object-cover" style="filter: saturate(.8) contrast(1.1) brightness(.85)" loading="lazy" onerror="this.remove()" />
-        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent"></div>
-        <span class="hud tl" style="top:14px;left:14px"></span><span class="hud tr" style="top:14px;right:14px"></span>
-        <div class="absolute bottom-4 left-4 right-4 lglass rounded-2xl p-4">
-          <div class="relative z-10 flex items-center justify-between text-xs font-mono text-gray-300 mb-2">
-            <span>saldo_devedor.trend</span><span class="text-red-400">▲ crescente</span>
-          </div>
-          <svg viewBox="0 0 300 60" preserveAspectRatio="none" class="relative z-10 w-full h-12" aria-hidden="true">
-            <defs><linearGradient id="gRed" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F87171" stop-opacity=".4"/><stop offset="1" stop-color="#F87171" stop-opacity="0"/></linearGradient></defs>
-            <path d="M0 50 L30 48 L60 46 L90 47 L120 42 L150 40 L180 34 L210 30 L240 22 L270 16 L300 8 L300 60 L0 60Z" fill="url(#gRed)"/>
-            <path d="M0 50 L30 48 L60 46 L90 47 L120 42 L150 40 L180 34 L210 30 L240 22 L270 16 L300 8" fill="none" stroke="#F87171" stroke-width="2" vector-effect="non-scaling-stroke"/>
-          </svg>
-        </div>
-      </div>
+<!-- ============ FAIXA DE DADOS ============ -->
+<section class="relative border-y border-white/[0.08] bg-ink">
+  <div class="max-w-[1600px] mx-auto grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
+    <div class="p-8 sm:p-10 fade">
+      <div class="wide text-ash">Especialização</div>
+      <div class="numeral mt-5 text-6xl tnum"><span data-count="100">0</span>%</div>
+      <p class="mt-4 text-sm text-ash">Foco exclusivo em redução de passivos e contratos bancários.</p>
     </div>
-    <div class="order-1 lg:order-2">
-      <span class="reveal tag text-red-400">// diagnóstico</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Você está pagando mais do que deveria?</h2>
-      <p class="reveal mt-5 text-gray-400 text-lg">Muitas dívidas se tornam impagáveis não pela falta de pagamento, mas pelo acúmulo de taxas ilegais e capitalização abusiva.</p>
-      <div class="mt-9 space-y-3">
-        <div class="reveal spot p-5 flex gap-4"><span class="font-mono text-sm text-red-400 shrink-0 pt-0.5">01</span><div><h3 class="font-semibold text-white">Parcelas que não diminuem</h3><p class="text-sm text-gray-400 mt-1">Você paga todo mês em dia, mas o saldo devedor parece estagnado ou só aumenta.</p></div></div>
-        <div class="reveal spot p-5 flex gap-4"><span class="font-mono text-sm text-red-400 shrink-0 pt-0.5">02</span><div><h3 class="font-semibold text-white">Juros abusivos</h3><p class="text-sm text-gray-400 mt-1">Taxas aplicadas muito acima da média de mercado divulgada pelo Banco Central na época da contratação.</p></div></div>
-        <div class="reveal spot p-5 flex gap-4"><span class="font-mono text-sm text-red-400 shrink-0 pt-0.5">03</span><div><h3 class="font-semibold text-white">Cobranças ocultas (venda casada)</h3><p class="text-sm text-gray-400 mt-1">Seguros prestamistas, tarifas administrativas e pacotes embutidos no contrato sem sua autorização clara.</p></div></div>
+    <div class="p-8 sm:p-10 fade">
+      <div class="wide text-ash">Atendimento</div>
+      <div class="numeral mt-5 text-6xl">1:1</div>
+      <p class="mt-4 text-sm text-ash">Direto e individualizado para o seu caso.</p>
+    </div>
+    <div class="p-8 sm:p-10 fade">
+      <div class="wide text-ash">Referência</div>
+      <div class="numeral mt-5 text-6xl">BACEN</div>
+      <p class="mt-4 text-sm text-ash">Recálculo técnico baseado na taxa média do Banco Central.</p>
+    </div>
+    <div class="p-8 sm:p-10 fade">
+      <div class="wide text-ash">Experiência</div>
+      <div class="numeral mt-5 text-6xl tnum">+<span data-count="16">0</span></div>
+      <p class="mt-4 text-sm text-ash">Anos de prática em contratos e cobranças bancárias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAP. 01 — DIAGNÓSTICO ============ -->
+<section id="diagnostico" class="relative py-28 sm:py-40">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">01</span>Diagnóstico</div>
+    <div class="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+      <h2 class="title-reveal lg:col-span-7 display text-4xl sm:text-6xl xl:text-7xl"><span>Você está pagando mais do que deveria?</span></h2>
+      <p class="lg:col-span-5 text-lg leading-relaxed fade">Muitas dívidas se tornam impagáveis não pela falta de pagamento, mas pelo acúmulo de taxas ilegais e capitalização abusiva.</p>
+    </div>
+
+    <div class="frame mt-16 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[2.39/1] fade">
+      <img data-dolly src="img/dor-endividamento.jpg" width="1024" height="768" alt="Empresário preocupado analisando contrato e parcelas de dívida bancária" class="absolute inset-0 w-full h-full object-cover" loading="lazy" onerror="this.remove()" />
+      <span class="meta top-5 left-5">A002_C011 · Ext. escritório · Dia</span>
+      <span class="meta top-5 right-5 tnum">TC <span data-tc>00:00:00:00</span></span>
+      <span class="meta bottom-5 left-5">Saldo devedor: ▲ crescente</span>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08]">
+      <div class="bg-ink p-8 sm:p-10 fade">
+        <div class="mono text-signal text-sm">01</div>
+        <h3 class="mt-6 text-xl font-semibold text-bone" style="font-stretch:110%">Parcelas que não diminuem</h3>
+        <p class="mt-3 text-ash leading-relaxed">Você paga todo mês em dia, mas o saldo devedor parece estagnado ou só aumenta.</p>
+      </div>
+      <div class="bg-ink p-8 sm:p-10 fade">
+        <div class="mono text-signal text-sm">02</div>
+        <h3 class="mt-6 text-xl font-semibold text-bone" style="font-stretch:110%">Juros abusivos</h3>
+        <p class="mt-3 text-ash leading-relaxed">Taxas aplicadas muito acima da média de mercado divulgada pelo Banco Central na época da contratação.</p>
+      </div>
+      <div class="bg-ink p-8 sm:p-10 fade">
+        <div class="mono text-signal text-sm">03</div>
+        <h3 class="mt-6 text-xl font-semibold text-bone" style="font-stretch:110%">Cobranças ocultas</h3>
+        <p class="mt-3 text-ash leading-relaxed">Seguros prestamistas, tarifas administrativas e pacotes embutidos no contrato sem sua autorização clara (venda casada).</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTRATOS (BENTO) ============ -->
-<section id="contratos" class="relative py-28 border-t border-line overflow-hidden">
-  <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[900px] max-w-full h-[500px] rounded-full bg-accent-purple/10 blur-[120px]" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="max-w-3xl">
-      <span class="reveal tag text-accent-blue">// contratos analisados</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Analisamos seu contrato e identificamos cobranças abusivas</h2>
-      <p class="reveal mt-5 text-gray-400 text-lg">Por meio de uma perícia e revisão técnica profunda, mapeamos cada cláusula do seu contrato bancário para restabelecer o equilíbrio financeiro.</p>
+<!-- ============ CAP. 02 — CONTRATOS ============ -->
+<section id="contratos" class="relative py-28 sm:py-40 bg-coal border-y border-white/[0.06]">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">02</span>Contratos analisados</div>
+    <div class="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+      <h2 class="title-reveal lg:col-span-7 display text-4xl sm:text-6xl xl:text-7xl"><span>Cada cláusula, mapeada.</span></h2>
+      <p class="lg:col-span-5 text-lg leading-relaxed fade">Por meio de perícia e revisão técnica profunda, analisamos seu contrato e identificamos cobranças abusivas para restabelecer o equilíbrio financeiro.</p>
     </div>
-
-    <div class="mt-14 grid grid-cols-1 md:grid-cols-6 gap-4">
-      <article class="reveal spot p-8 md:col-span-4 md:row-span-2 flex flex-col">
-        <div class="relative flex items-center justify-between">
-          <span class="w-12 h-12 rounded-2xl grid place-items-center bg-accent-blue/10 border border-accent-blue/25"><i data-lucide="wallet" class="w-6 h-6 text-accent-blue"></i></span>
-          <span class="font-mono text-[11px] text-muted">CET · TAXA · TARIFAS</span>
-        </div>
-        <h3 class="relative mt-7 text-2xl sm:text-3xl font-semibold text-white tracking-tight">Empréstimos pessoais e renegociações</h3>
-        <p class="relative mt-2 text-gray-400 max-w-lg">Conferência de taxa contratada, CET, tarifas e encargos em empréstimos e acordos de renegociação bancária.</p>
-        <div class="relative mt-auto pt-10">
-          <div class="rounded-2xl border border-line bg-bg/60 p-5 font-mono text-xs">
-            <div class="flex justify-between text-muted mb-2"><span>taxa_contratada</span><span class="text-red-400">auditada</span></div>
-            <div class="h-2 rounded-full bg-white/5 overflow-hidden"><div class="bar-fill h-full w-0 rounded-full bg-red-400/80" data-w="88"></div></div>
-            <div class="flex justify-between text-muted mt-4 mb-2"><span>taxa_media_bacen</span><span class="text-accent-blue">comparada</span></div>
-            <div class="h-2 rounded-full bg-white/5 overflow-hidden"><div class="bar-fill h-full w-0 rounded-full bg-accent-blue" data-w="52"></div></div>
-            <div class="flex justify-between text-muted mt-4"><span>diferença</span><span class="text-accent-green">recalculada</span></div>
-          </div>
-          <p class="mt-2 text-[10px] text-muted/70 font-mono">* comparação ilustrativa</p>
-        </div>
-      </article>
-      <article class="reveal spot p-7 md:col-span-2">
-        <span class="relative w-11 h-11 rounded-2xl grid place-items-center bg-accent-purple/10 border border-accent-purple/25"><i data-lucide="landmark" class="w-5 h-5 text-accent-purple"></i></span>
-        <h3 class="relative mt-5 text-lg font-semibold text-white">Empréstimos consignados</h3>
-        <p class="relative mt-2 text-sm text-gray-400">INSS, servidores públicos e Forças Armadas, incluindo cartões RMC e RCC com descontos recorrentes em folha.</p>
-      </article>
-      <article class="reveal spot p-7 md:col-span-2">
-        <span class="relative w-11 h-11 rounded-2xl grid place-items-center bg-accent-green/10 border border-accent-green/25"><i data-lucide="car" class="w-5 h-5 text-accent-green"></i></span>
-        <h3 class="relative mt-5 text-lg font-semibold text-white">Financiamento de veículos</h3>
-        <p class="relative mt-2 text-sm text-gray-400">Veículos leves, pesados e frota: juros, tarifas de cadastro, seguros e demais cobranças embutidas.</p>
-      </article>
-      <article class="reveal spot p-7 md:col-span-3">
-        <span class="relative w-11 h-11 rounded-2xl grid place-items-center bg-red-500/10 border border-red-500/25"><i data-lucide="credit-card" class="w-5 h-5 text-red-400"></i></span>
-        <h3 class="relative mt-5 text-lg font-semibold text-white">Cartões de crédito</h3>
-        <p class="relative mt-2 text-sm text-gray-400">Juros do rotativo e parcelamentos compulsórios de fatura que elevam a dívida mês a mês.</p>
-      </article>
-      <article class="reveal spot p-7 md:col-span-3">
-        <span class="relative w-11 h-11 rounded-2xl grid place-items-center bg-amber-500/10 border border-amber-500/25"><i data-lucide="building-2" class="w-5 h-5 text-amber-400"></i></span>
-        <h3 class="relative mt-5 text-lg font-semibold text-white">Contratos empresariais</h3>
-        <p class="relative mt-2 text-sm text-gray-400">Capital de giro, Pronampe e conta garantida: revisão das condições contratadas para devolver fôlego ao caixa da empresa.</p>
-      </article>
-    </div>
-    <div class="reveal mt-10">
-      <a data-wa="Olá! Quero analisar meu contrato bancário." data-magnetic class="btn-green inline-flex items-center gap-2 text-white font-semibold px-7 py-4 rounded-xl">
-        <i data-lucide="message-circle" class="w-5 h-5"></i> Quero analisar meu contrato
-      </a>
+    <div id="contractList" class="mt-16 border-b border-white/[0.12]"></div>
+    <div class="mt-12 fade">
+      <a data-wa="Olá! Quero analisar meu contrato bancário." class="btn btn-bone">Quero analisar meu contrato <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ============ SIMULADOR ============ -->
-<section id="simulador" class="relative py-28 border-t border-line">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="max-w-3xl">
-      <span class="reveal tag text-accent-green">// simulador educativo</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Simule o potencial de redução</h2>
-      <p class="reveal mt-5 text-gray-400 text-lg">Uma estimativa inicial, apenas para orientação. O valor real só pode ser definido após a análise técnica do seu contrato.</p>
+<!-- ============ CAP. 03 — SIMULADOR ============ -->
+<section id="simulador" class="relative py-28 sm:py-40">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">03</span>Simulador educativo</div>
+    <div class="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+      <h2 class="title-reveal lg:col-span-7 display text-4xl sm:text-6xl xl:text-7xl"><span>Simule o potencial de redução.</span></h2>
+      <p class="lg:col-span-5 text-lg leading-relaxed fade">Uma estimativa inicial, apenas para orientação. O valor real só pode ser definido após a análise técnica do seu contrato.</p>
     </div>
 
-    <div class="mt-14 grid lg:grid-cols-5 gap-5">
-      <form id="simForm" class="reveal lg:col-span-2 spot p-7 sm:p-8 space-y-5" novalidate>
-        <div class="relative">
-          <label for="simTipo" class="block text-sm font-medium text-white mb-2">Tipo de contrato</label>
-          <select id="simTipo" class="field w-full rounded-xl px-4 py-3.5 text-sm" required>
-            <option value="">Selecione...</option>
+    <div class="mt-16 grid lg:grid-cols-12 gap-px bg-white/[0.08] border border-white/[0.08]">
+      <form id="simForm" class="lg:col-span-5 bg-ink p-8 sm:p-12 space-y-9" novalidate>
+        <div>
+          <label for="simTipo" class="wide text-ash">Tipo de contrato</label>
+          <select id="simTipo" class="field mt-2" required>
+            <option value="">Selecione</option>
             <option>Financiamento de Veículo</option>
             <option>Empréstimo Pessoal / Renegociação</option>
             <option>Empréstimo Consignado</option>
@@ -454,328 +373,292 @@ tailwind.config = {
             <option>Contrato Empresarial</option>
           </select>
         </div>
-        <div class="relative">
-          <label for="simParcela" class="block text-sm font-medium text-white mb-2">Valor aproximado da parcela atual (R$)</label>
-          <div class="relative">
-            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted font-mono text-sm">R$</span>
-            <input id="simParcela" type="text" inputmode="decimal" placeholder="1.250,00" class="field w-full rounded-xl pl-11 pr-4 py-3.5 text-sm font-mono tnum" required />
-          </div>
+        <div>
+          <label for="simParcela" class="wide text-ash">Valor aproximado da parcela (R$)</label>
+          <input id="simParcela" type="text" inputmode="decimal" placeholder="1.250,00" class="field mt-2 mono tnum" required />
         </div>
-        <div class="relative">
-          <label for="simQtd" class="block text-sm font-medium text-white mb-2">Quantidade de parcelas restantes</label>
-          <input id="simQtd" type="number" min="1" max="600" step="1" placeholder="36" class="field w-full rounded-xl px-4 py-3.5 text-sm font-mono tnum" required />
+        <div>
+          <label for="simQtd" class="wide text-ash">Parcelas restantes</label>
+          <input id="simQtd" type="number" min="1" max="600" step="1" placeholder="36" class="field mt-2 mono tnum" required />
         </div>
-        <p id="simErro" class="relative hidden text-sm text-red-400" role="alert"></p>
-        <button type="submit" class="relative btn-primary w-full inline-flex justify-center items-center gap-2 text-white font-semibold px-6 py-4 rounded-xl">
-          <i data-lucide="cpu" class="w-5 h-5"></i> Simular potencial de redução
-        </button>
+        <p id="simErro" class="hidden text-sm text-signal" role="alert"></p>
+        <button type="submit" class="btn btn-bone w-full">Calcular estimativa <span class="arrow">→</span></button>
       </form>
 
-      <div class="reveal lg:col-span-3 beam rounded-[1.25rem] lglass p-7 sm:p-8 flex flex-col" aria-live="polite">
-        <div id="simVazio" class="relative z-10 flex-1 grid place-items-center text-center py-10">
-          <div>
-            <div class="mx-auto w-16 h-16 rounded-2xl grid place-items-center bg-white/[0.04] border border-line"><i data-lucide="activity" class="w-7 h-7 text-muted"></i></div>
-            <p class="mt-5 text-gray-400 max-w-sm">Preencha os dados ao lado para ver uma estimativa educativa da sua possível economia.</p>
-          </div>
+      <div class="lg:col-span-7 bg-ink p-8 sm:p-12 flex flex-col" aria-live="polite">
+        <div id="simVazio" class="flex-1 flex flex-col justify-center py-10">
+          <div class="mono text-xs tracking-[0.14em] uppercase text-ash">Aguardando dados</div>
+          <p class="mt-4 text-2xl text-bone max-w-md" style="font-stretch:110%">Preencha os campos para ver uma estimativa educativa da sua possível economia.</p>
         </div>
-        <div id="simLoading" class="relative z-10 hidden flex-1 grid place-items-center py-10">
-          <div class="font-mono text-sm text-accent-blue flex items-center gap-3"><i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processando estimativa…</div>
-        </div>
-        <div id="simCheio" class="relative z-10 hidden">
-          <div class="flex items-center justify-between font-mono text-xs text-muted">
-            <span id="simTipoOut">—</span><span class="text-accent-green">● estimativa gerada</span>
+        <div id="simLoading" class="hidden flex-1 flex items-center py-10 mono text-xs tracking-[0.16em] uppercase text-ash">Processando estimativa<span id="simDots" class="w-6"></span></div>
+        <div id="simCheio" class="hidden">
+          <div class="flex flex-wrap justify-between gap-3 mono text-[11px] tracking-[0.14em] uppercase text-ash">
+            <span id="simTipoOut">—</span><span class="text-signal">Estimativa gerada</span>
           </div>
-          <div class="mt-6 grid sm:grid-cols-[auto,1fr] gap-6 items-center">
-            <div class="relative w-36 h-36 mx-auto">
-              <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90" aria-hidden="true">
-                <defs><linearGradient id="ringG" x1="0" x2="1"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
-                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="10"/>
-                <circle id="ring" class="ring-fg" cx="60" cy="60" r="52" fill="none" stroke="url(#ringG)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
-              </svg>
-              <div class="absolute inset-0 grid place-items-center text-center">
-                <div><div class="font-mono text-2xl font-bold text-white tnum">até 70%</div><div class="text-[10px] text-muted font-mono">potencial</div></div>
-              </div>
-            </div>
-            <div class="grid gap-3">
-              <div class="rounded-xl border border-line bg-bg/60 p-4">
-                <div class="text-xs text-muted">Total restante estimado</div>
-                <div id="simTotal" class="mt-1 font-mono text-2xl sm:text-3xl font-bold text-white tnum">—</div>
-              </div>
-              <div class="rounded-xl border border-accent-green/30 bg-accent-green/5 p-4">
-                <div class="text-xs text-muted">Faixa de economia potencial</div>
-                <div class="mt-1 font-mono text-xl sm:text-2xl font-bold text-accent-green tnum"><span id="simMin">—</span> <span class="text-muted text-base">a</span> <span id="simMax">—</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="mt-7 space-y-4 font-mono text-xs">
+          <div class="mt-10 grid sm:grid-cols-2 gap-10">
             <div>
-              <div class="flex justify-between text-muted mb-1.5"><span>cenário atual</span><span>100%</span></div>
-              <div class="h-2.5 rounded-full bg-white/5 overflow-hidden"><div class="sim-bar bar-fill h-full w-0 rounded-full bg-red-400/80" data-w="100"></div></div>
+              <div class="wide text-ash">Total restante estimado</div>
+              <div id="simTotal" class="numeral mt-4 text-4xl sm:text-5xl tnum">—</div>
             </div>
             <div>
-              <div class="flex justify-between text-muted mb-1.5"><span>cenário revisado (conservador)</span><span>60%</span></div>
-              <div class="h-2.5 rounded-full bg-white/5 overflow-hidden"><div class="sim-bar bar-fill h-full w-0 rounded-full bg-accent-blue" data-w="60"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-muted mb-1.5"><span>cenário revisado (otimista)</span><span>30%</span></div>
-              <div class="h-2.5 rounded-full bg-white/5 overflow-hidden"><div class="sim-bar bar-fill h-full w-0 rounded-full bg-gradient-to-r from-accent-green to-accent-blue" data-w="30"></div></div>
+              <div class="wide text-ash">Faixa de economia potencial</div>
+              <div class="numeral mt-4 text-3xl sm:text-4xl tnum"><span id="simMin">—</span><span class="text-ash text-2xl"> a </span><span id="simMax">—</span></div>
             </div>
           </div>
-          <p class="mt-6 text-xs text-muted leading-relaxed">Estimativa meramente educativa e ilustrativa. Não representa promessa ou garantia de resultado — o valor real depende da análise técnica individual do seu contrato.</p>
-          <a id="simWa" class="mt-6 btn-green inline-flex items-center gap-2 text-white font-semibold px-6 py-3.5 rounded-xl">
-            <i data-lucide="send" class="w-4 h-4"></i> Enviar estes dados para análise
-          </a>
+          <div class="mt-12 space-y-6 mono text-[11px] tracking-[0.12em] uppercase">
+            <div>
+              <div class="flex justify-between text-ash mb-2"><span>Cenário atual</span><span class="tnum">100%</span></div>
+              <div class="h-px bg-white/10"><div class="sim-line line-fill h-px w-0 bg-ash" data-w="100"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-ash mb-2"><span>Revisado · conservador</span><span class="tnum">60%</span></div>
+              <div class="h-px bg-white/10"><div class="sim-line line-fill h-px w-0 bg-bone" data-w="60"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-ash mb-2"><span>Revisado · otimista</span><span class="tnum">30%</span></div>
+              <div class="h-[2px] bg-white/10"><div class="sim-line line-fill h-[2px] w-0 bg-signal" data-w="30"></div></div>
+            </div>
+          </div>
+          <p class="mt-10 text-xs text-ash leading-relaxed max-w-xl">Estimativa meramente educativa e ilustrativa. Não representa promessa ou garantia de resultado — o valor real depende da análise técnica individual do seu contrato.</p>
+          <a id="simWa" class="mt-8 btn btn-bone">Enviar estes dados para análise <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ COMO FUNCIONA ============ -->
-<section id="como-funciona" class="relative py-28 border-t border-line">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="max-w-3xl">
-      <span class="reveal tag text-accent-purple">// passo a passo</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Entenda como funciona o atendimento</h2>
-    </div>
-    <div id="timeline" class="relative mt-16">
-      <div class="absolute left-7 top-0 bottom-0 w-px bg-white/10 lg:left-[12.5%] lg:right-[12.5%] lg:top-7 lg:bottom-auto lg:w-auto lg:h-px" aria-hidden="true">
-        <div id="tlFill" class="tl-fill absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-accent-blue via-accent-purple to-accent-green shadow-[0_0_14px_rgba(59,130,246,.8)]"></div>
+<!-- ============ CAP. 04 — MÉTODO ============ -->
+<section id="como-funciona" class="relative py-28 sm:py-40 bg-coal border-y border-white/[0.06]">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">04</span>Sequência de atendimento</div>
+    <h2 class="title-reveal mt-14 display text-4xl sm:text-6xl xl:text-7xl max-w-4xl"><span>Entenda como funciona o atendimento.</span></h2>
+
+    <div id="timeline" class="relative mt-20">
+      <div class="hidden lg:block absolute left-0 right-0 top-0 h-px bg-white/10" aria-hidden="true"><div id="tlFill" class="tl-fill absolute inset-0 bg-bone"></div></div>
+      <div class="hidden lg:flex absolute left-0 right-0 -top-1.5 justify-between pointer-events-none" aria-hidden="true">
+        <span class="w-px h-3 bg-white/30"></span><span class="w-px h-3 bg-white/30"></span><span class="w-px h-3 bg-white/30"></span><span class="w-px h-3 bg-white/30"></span><span class="w-px h-3 bg-white/30"></span>
       </div>
-      <ol class="grid lg:grid-cols-4 gap-10">
-        <li class="reveal relative flex lg:block gap-5 lg:text-center lg:px-4">
-          <div class="relative shrink-0 lg:mx-auto w-14 h-14 rounded-2xl grid place-items-center lglass bg-bg"><i data-lucide="send" class="relative z-10 w-6 h-6 text-accent-blue"></i><span class="absolute -top-2 -right-2 z-10 font-mono text-[10px] px-1.5 py-0.5 rounded bg-accent-blue text-white">01</span></div>
-          <div><h3 class="lg:mt-6 font-semibold text-white text-lg">Você envia seu caso</h3><p class="mt-2 text-sm text-gray-400">Contato inicial detalhado pelo WhatsApp para entendermos sua situação.</p></div>
+      <ol class="grid lg:grid-cols-4 gap-12 lg:gap-10 lg:pt-12">
+        <li class="fade border-l lg:border-l-0 border-white/10 pl-6 lg:pl-0">
+          <div class="mono text-xs text-signal tracking-[0.14em]">FASE 01</div>
+          <h3 class="mt-5 text-2xl font-semibold text-bone" style="font-stretch:112%">Você envia seu caso</h3>
+          <p class="mt-3 text-ash leading-relaxed">Contato inicial detalhado pelo WhatsApp para entendermos sua situação.</p>
         </li>
-        <li class="reveal relative flex lg:block gap-5 lg:text-center lg:px-4" style="transition-delay:.08s">
-          <div class="relative shrink-0 lg:mx-auto w-14 h-14 rounded-2xl grid place-items-center lglass bg-bg"><i data-lucide="microscope" class="relative z-10 w-6 h-6 text-accent-purple"></i><span class="absolute -top-2 -right-2 z-10 font-mono text-[10px] px-1.5 py-0.5 rounded bg-accent-purple text-white">02</span></div>
-          <div><h3 class="lg:mt-6 font-semibold text-white text-lg">Análise técnica</h3><p class="mt-2 text-sm text-gray-400">Verificação minuciosa de taxas de juros, CET (Custo Efetivo Total) e tarifas ilegais.</p></div>
+        <li class="fade border-l lg:border-l-0 border-white/10 pl-6 lg:pl-0">
+          <div class="mono text-xs text-signal tracking-[0.14em]">FASE 02</div>
+          <h3 class="mt-5 text-2xl font-semibold text-bone" style="font-stretch:112%">Análise técnica</h3>
+          <p class="mt-3 text-ash leading-relaxed">Verificação minuciosa de taxas de juros, CET (Custo Efetivo Total) e tarifas ilegais.</p>
         </li>
-        <li class="reveal relative flex lg:block gap-5 lg:text-center lg:px-4" style="transition-delay:.16s">
-          <div class="relative shrink-0 lg:mx-auto w-14 h-14 rounded-2xl grid place-items-center lglass bg-bg"><i data-lucide="route" class="relative z-10 w-6 h-6 text-sky-400"></i><span class="absolute -top-2 -right-2 z-10 font-mono text-[10px] px-1.5 py-0.5 rounded bg-sky-500 text-white">03</span></div>
-          <div><h3 class="lg:mt-6 font-semibold text-white text-lg">Plano de ação</h3><p class="mt-2 text-sm text-gray-400">Definição da melhor estratégia extrajudicial ou técnica para redução da dívida.</p></div>
+        <li class="fade border-l lg:border-l-0 border-white/10 pl-6 lg:pl-0">
+          <div class="mono text-xs text-signal tracking-[0.14em]">FASE 03</div>
+          <h3 class="mt-5 text-2xl font-semibold text-bone" style="font-stretch:112%">Plano de ação</h3>
+          <p class="mt-3 text-ash leading-relaxed">Definição da melhor estratégia extrajudicial ou técnica para redução da dívida.</p>
         </li>
-        <li class="reveal relative flex lg:block gap-5 lg:text-center lg:px-4" style="transition-delay:.24s">
-          <div class="relative shrink-0 lg:mx-auto w-14 h-14 rounded-2xl grid place-items-center lglass bg-bg"><i data-lucide="badge-check" class="relative z-10 w-6 h-6 text-accent-green"></i><span class="absolute -top-2 -right-2 z-10 font-mono text-[10px] px-1.5 py-0.5 rounded bg-accent-green text-white">04</span></div>
-          <div><h3 class="lg:mt-6 font-semibold text-white text-lg">Acompanhamento</h3><p class="mt-2 text-sm text-gray-400">Suporte próximo e transparente em todas as etapas até a resolução e o acordo.</p></div>
+        <li class="fade border-l lg:border-l-0 border-white/10 pl-6 lg:pl-0">
+          <div class="mono text-xs text-signal tracking-[0.14em]">FASE 04</div>
+          <h3 class="mt-5 text-2xl font-semibold text-bone" style="font-stretch:112%">Acompanhamento</h3>
+          <p class="mt-3 text-ash leading-relaxed">Suporte próximo e transparente em todas as etapas até a resolução e o acordo.</p>
         </li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- ============ BENEFÍCIOS ============ -->
-<section id="beneficios" class="relative py-28 border-t border-line">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="max-w-3xl">
-      <span class="reveal tag text-accent-green">// resultados</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">O que você pode conquistar com a revisão</h2>
-    </div>
-    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="reveal spot p-6"><i data-lucide="trending-down" class="relative w-6 h-6 text-accent-green"></i><h3 class="relative mt-4 font-semibold text-white">Redução real da dívida</h3><p class="relative mt-2 text-sm text-gray-400">Recálculo justo dos valores devidos, eliminando excessos com base na taxa média do Banco Central e na análise técnica do contrato.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="gauge" class="relative w-6 h-6 text-accent-blue"></i><h3 class="relative mt-4 font-semibold text-white">Mais controle financeiro</h3><p class="relative mt-2 text-sm text-gray-400">Parcelas readequadas que voltam a caber no seu orçamento mensal.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="shield" class="relative w-6 h-6 text-accent-purple"></i><h3 class="relative mt-4 font-semibold text-white">Segurança técnica</h3><p class="relative mt-2 text-sm text-gray-400">Amparo especializado contra cobranças abusivas e constrangimentos.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="sparkles" class="relative w-6 h-6 text-amber-400"></i><h3 class="relative mt-4 font-semibold text-white">Alívio financeiro</h3><p class="relative mt-2 text-sm text-gray-400">Fim do efeito bola de neve para pessoas físicas e empresas.</p></div>
+<!-- ============ CAP. 05 — RESULTADOS ============ -->
+<section id="beneficios" class="relative py-28 sm:py-40">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">05</span>Resultados</div>
+    <h2 class="title-reveal mt-14 display text-4xl sm:text-6xl xl:text-7xl max-w-4xl"><span>O que você pode conquistar com a revisão.</span></h2>
+
+    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-white/[0.08]">
+      <div class="fade py-10 sm:pr-10 border-b border-white/[0.08] lg:border-b-0"><h3 class="text-xl font-semibold text-bone" style="font-stretch:110%">Redução real da dívida</h3><p class="mt-3 text-ash leading-relaxed">Recálculo justo dos valores devidos, eliminando excessos com base na taxa média do Banco Central e na análise técnica do contrato.</p></div>
+      <div class="fade py-10 sm:pl-10 lg:pr-10 border-b border-white/[0.08] lg:border-b-0 sm:border-l border-white/[0.08]"><h3 class="text-xl font-semibold text-bone" style="font-stretch:110%">Mais controle financeiro</h3><p class="mt-3 text-ash leading-relaxed">Parcelas readequadas que voltam a caber no seu orçamento mensal.</p></div>
+      <div class="fade py-10 sm:pr-10 lg:pl-10 border-b border-white/[0.08] sm:border-b-0 lg:border-l border-white/[0.08]"><h3 class="text-xl font-semibold text-bone" style="font-stretch:110%">Segurança técnica</h3><p class="mt-3 text-ash leading-relaxed">Amparo especializado contra cobranças abusivas e constrangimentos.</p></div>
+      <div class="fade py-10 sm:pl-10 sm:border-l border-white/[0.08]"><h3 class="text-xl font-semibold text-bone" style="font-stretch:110%">Alívio financeiro</h3><p class="mt-3 text-ash leading-relaxed">Fim do efeito bola de neve para pessoas físicas e empresas.</p></div>
     </div>
 
-    <div class="mt-5 grid md:grid-cols-3 gap-4">
-      <div class="reveal beam rounded-3xl lglass p-8">
-        <div class="relative z-10 font-mono text-6xl font-bold text-white tnum">+<span data-count="16">0</span></div>
-        <div class="relative z-10 mt-1 text-white font-medium">anos de experiência</div>
-        <p class="relative z-10 mt-2 text-sm text-gray-400">Prática em contratos e cobranças bancárias.</p>
+    <div class="mt-6 grid md:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08]">
+      <div class="bg-ink p-10 fade">
+        <div class="numeral text-7xl sm:text-8xl tnum">+<span data-count="16">0</span></div>
+        <div class="mt-6 wide text-bone">Anos de experiência</div>
+        <p class="mt-2 text-sm text-ash">Prática em contratos e cobranças bancárias.</p>
       </div>
-      <div class="reveal beam rounded-3xl lglass p-8">
-        <div class="relative z-10 font-mono text-6xl font-bold text-white tnum">&gt;<span data-count="40">0</span>%</div>
-        <div class="relative z-10 mt-1 text-white font-medium">Caso real</div>
-        <p class="relative z-10 mt-2 text-sm text-gray-400">Redução em parcelas após revisão técnica. <span class="block text-xs mt-1 text-muted">Resultado individual; não representa garantia para outros casos.</span></p>
+      <div class="bg-ink p-10 fade">
+        <div class="numeral text-7xl sm:text-8xl tnum">&gt;<span data-count="40">0</span>%</div>
+        <div class="mt-6 wide text-bone">Caso real</div>
+        <p class="mt-2 text-sm text-ash">Redução em parcelas após revisão técnica. Resultado individual; não representa garantia para outros casos.</p>
       </div>
-      <div class="reveal beam rounded-3xl lglass p-8">
-        <div class="relative z-10 font-mono text-6xl font-bold text-white tnum"><span data-count="100">0</span>%</div>
-        <div class="relative z-10 mt-1 text-white font-medium">contratos auditados</div>
-        <p class="relative z-10 mt-2 text-sm text-gray-400">Antes de qualquer medida.</p>
+      <div class="bg-ink p-10 fade">
+        <div class="numeral text-7xl sm:text-8xl tnum"><span data-count="100">0</span>%</div>
+        <div class="mt-6 wide text-bone">Contratos auditados</div>
+        <p class="mt-2 text-sm text-ash">Antes de qualquer medida.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ QUEM CONDUZ ============ -->
-<section class="relative py-28 border-t border-line overflow-hidden">
-  <div class="absolute -left-40 bottom-0 w-[600px] h-[600px] rounded-full bg-accent-blue/15 blur-[130px]" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-14 items-center">
-    <div class="reveal lg:col-span-5" style="perspective: 1400px;">
-      <div class="relative max-w-md mx-auto tilt" data-tilt>
-        <div class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent-blue/40 via-accent-purple/30 to-accent-green/20 blur-2xl opacity-70" aria-hidden="true"></div>
-        <div class="beam group relative rounded-3xl overflow-hidden bg-surface aspect-[4/5]">
-          <img src="img/dr-reinaldo.webp" alt="Dr. Reinaldo, responsável técnico da RF Consultoria Bancária, em seu escritório" width="1123" height="1401" class="w-full h-full object-cover object-top transition-transform duration-[1400ms] group-hover:scale-[1.04]" style="filter: contrast(1.06) saturate(.95)" loading="lazy" onerror="this.parentElement.classList.add('grid','place-items-center');this.outerHTML='<span class=&quot;font-mono text-6xl text-white/20&quot;>DR</span>'" />
-          <span class="hud tl" style="top:14px;left:14px"></span><span class="hud tr" style="top:14px;right:14px"></span>
-          <span class="absolute top-4 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] px-2 py-1 rounded-md bg-bg/60 backdrop-blur text-accent-green border border-accent-green/25">RESPONSÁVEL TÉCNICO</span>
-          <div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-bg via-bg/40 to-transparent">
-            <div class="lglass rounded-2xl px-5 py-4 flex items-center justify-between">
-              <div class="relative z-10"><div class="font-semibold text-white text-lg">Dr. Reinaldo</div><div class="text-xs text-gray-400">Responsável técnico · RF Consultoria Bancária</div></div>
-              <span class="relative z-10 w-2.5 h-2.5 rounded-full bg-accent-green pulse-dot"></span>
-            </div>
+<!-- ============ CAP. 06 — RESPONSÁVEL TÉCNICO ============ -->
+<section class="relative py-28 sm:py-40 bg-coal border-y border-white/[0.06]">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">06</span>Quem conduz o seu caso</div>
+    <div class="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div class="lg:col-span-5 fade">
+        <div class="frame aspect-[4/5]">
+          <img data-dolly src="img/dr-reinaldo.webp" width="1123" height="1401" alt="Dr. Reinaldo, responsável técnico da RF Consultoria Bancária, em seu escritório" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" onerror="this.remove()" />
+          <span class="meta top-5 left-5">A004_C002 · Int. escritório</span>
+          <div class="absolute inset-x-0 bottom-0 z-[2] p-6 sm:p-8">
+            <div class="wide text-ash">Responsável técnico</div>
+            <div class="mt-2 text-3xl text-bone font-semibold" style="font-stretch:118%">Dr. Reinaldo</div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="lg:col-span-7">
-      <span class="reveal tag text-accent-blue">// quem conduz o seu caso</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Atendimento direto, com análise técnica e transparência</h2>
-      <p class="reveal mt-6 text-gray-400 text-lg leading-relaxed">Seu contrato não é tratado em esteira. A RF Consultoria Bancária é conduzida por um responsável técnico que acompanha a análise do início ao fim, com o apoio de uma equipe técnica dedicada, e explica, em linguagem clara, o que foi encontrado, quais são as alternativas e o que esperar de cada uma.</p>
-      <div class="reveal mt-9 grid sm:grid-cols-2 gap-4">
-        <div class="spot p-5"><div class="relative font-mono text-xs text-muted uppercase">Experiência</div><div class="relative mt-1 font-mono text-3xl font-bold text-white tnum"><span data-count="16">0</span> anos</div><p class="relative text-sm text-gray-400 mt-1">de prática em contratos e cobranças bancárias</p></div>
-        <div class="spot p-5"><div class="relative font-mono text-xs text-muted uppercase">Equipe</div><div class="relative mt-1 font-mono text-3xl font-bold text-white tnum"><span data-count="12">0</span></div><p class="relative text-sm text-gray-400 mt-1">colaboradores na equipe técnica, dedicados à análise e ao acompanhamento</p></div>
-      </div>
-      <ul class="reveal mt-7 space-y-3 text-sm text-gray-300">
-        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent-green shrink-0"></i><span>Atendimento 1:1, individualizado para o seu caso.</span></li>
-        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent-green shrink-0"></i><span>Conferência de taxas, CET e tarifas contra a taxa média do Banco Central.</span></li>
-        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent-green shrink-0"></i><span>Clareza sobre custos e expectativas antes de qualquer medida.</span></li>
-      </ul>
-      <div class="reveal mt-9 flex flex-col sm:flex-row gap-3">
-        <a data-wa="Olá! Vim pelo site e gostaria de falar com o Dr. Reinaldo sobre o meu contrato bancário." data-magnetic class="btn-green inline-flex justify-center items-center gap-2 text-white font-semibold px-7 py-4 rounded-xl"><i data-lucide="message-circle" class="w-5 h-5"></i> Falar com o Dr. Reinaldo</a>
-        <button type="button" data-open-modal data-magnetic class="btn-ghost inline-flex justify-center items-center gap-2 text-white font-semibold px-7 py-4 rounded-xl"><i data-lucide="file-search" class="w-5 h-5"></i> Solicitar análise do meu caso</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DIFERENCIAIS + PARA QUEM ============ -->
-<section id="para-quem" class="relative py-28 border-t border-line">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <span class="reveal tag text-accent-purple">// diferenciais</span>
-    <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Por que escolher a RF Consultoria Bancária</h2>
-    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="reveal spot p-6"><i data-lucide="users" class="relative w-6 h-6 text-accent-blue"></i><h3 class="relative mt-4 font-semibold text-white">Atendimento direto</h3><p class="relative mt-1 text-sm text-gray-400">Conversa com pessoas, sem robôs.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="scan-line" class="relative w-6 h-6 text-accent-purple"></i><h3 class="relative mt-4 font-semibold text-white">Análise técnica aprofundada</h3><p class="relative mt-1 text-sm text-gray-400">Cláusula por cláusula, taxa por taxa.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="target" class="relative w-6 h-6 text-accent-green"></i><h3 class="relative mt-4 font-semibold text-white">Viabilidade e resultado real</h3><p class="relative mt-1 text-sm text-gray-400">Só indicamos o que faz sentido para o seu caso.</p></div>
-      <div class="reveal spot p-6"><i data-lucide="eye" class="relative w-6 h-6 text-amber-400"></i><h3 class="relative mt-4 font-semibold text-white">Transparência total</h3><p class="relative mt-1 text-sm text-gray-400">Clareza sobre custos e expectativas desde o início.</p></div>
-    </div>
-
-    <div class="reveal mt-14 beam rounded-3xl lglass p-6 sm:p-9">
-      <h3 class="relative z-10 text-2xl font-bold text-white">Para quem é</h3>
-      <div class="relative z-10 mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Perfis atendidos" id="tabList"></div>
-      <div class="relative z-10 mt-7 grid md:grid-cols-[auto,1fr] gap-6 items-start" id="tabPanel" role="tabpanel" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" class="relative py-28 border-t border-line">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6">
-    <div class="text-center">
-      <span class="reveal tag text-accent-blue">// dúvidas (faq)</span>
-      <h2 data-split class="split mt-4 text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-white">Perguntas frequentes</h2>
-    </div>
-    <div id="faqList" class="mt-12 space-y-3"></div>
-  </div>
-</section>
-
-<!-- ============ CTA FINAL ============ -->
-<section class="relative py-28">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="reveal beam relative overflow-hidden rounded-[2rem] p-10 sm:p-16 text-center bg-surface">
-      <div class="absolute inset-0 aurora-fallback opacity-80" aria-hidden="true"></div>
-      <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
-      <div class="relative">
-        <span class="tag text-accent-green">// atendimento online agora</span>
-        <h2 class="mt-5 text-4xl sm:text-6xl font-extrabold tracking-[-0.035em] text-white">Fale com um especialista e <span class="text-gradient">entenda seu contrato</span></h2>
-        <p class="mt-5 text-gray-300 text-lg">Atendimento individualizado, sem robôs e sem compromisso.</p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <button type="button" data-open-modal data-magnetic class="btn-primary inline-flex justify-center items-center gap-2 text-white font-semibold px-8 py-4 rounded-xl"><i data-lucide="file-search" class="w-5 h-5"></i> Solicitar análise do meu caso</button>
-          <a data-wa="Olá! Gostaria de falar com um especialista sobre meu contrato bancário." data-magnetic class="btn-green inline-flex justify-center items-center gap-2 text-white font-semibold px-8 py-4 rounded-xl"><i data-lucide="message-circle" class="w-5 h-5"></i> Falar no WhatsApp agora</a>
+      <div class="lg:col-span-7">
+        <h2 class="title-reveal display text-4xl sm:text-6xl"><span>Atendimento direto, com análise técnica e transparência.</span></h2>
+        <p class="mt-8 text-lg leading-relaxed fade">Seu contrato não é tratado em esteira. A RF Consultoria Bancária é conduzida por um responsável técnico que acompanha a análise do início ao fim, com o apoio de uma equipe técnica dedicada, e explica, em linguagem clara, o que foi encontrado, quais são as alternativas e o que esperar de cada uma.</p>
+        <div class="mt-12 grid grid-cols-2 border-y border-white/[0.08] fade">
+          <div class="py-8 pr-6"><div class="numeral text-5xl sm:text-6xl tnum"><span data-count="16">0</span></div><div class="mt-4 wide text-ash">Anos de experiência</div></div>
+          <div class="py-8 pl-6 border-l border-white/[0.08]"><div class="numeral text-5xl sm:text-6xl tnum"><span data-count="12">0</span></div><div class="mt-4 wide text-ash">Colaboradores na equipe técnica</div></div>
+        </div>
+        <ul class="mt-8 space-y-4 fade">
+          <li class="flex gap-4"><span class="mono text-signal text-sm pt-0.5">—</span><span>Atendimento 1:1, individualizado para o seu caso.</span></li>
+          <li class="flex gap-4"><span class="mono text-signal text-sm pt-0.5">—</span><span>Conferência de taxas, CET e tarifas contra a taxa média do Banco Central.</span></li>
+          <li class="flex gap-4"><span class="mono text-signal text-sm pt-0.5">—</span><span>Clareza sobre custos e expectativas antes de qualquer medida.</span></li>
+        </ul>
+        <div class="mt-10 flex flex-col sm:flex-row gap-3 fade">
+          <a data-wa="Olá! Vim pelo site e gostaria de falar com o Dr. Reinaldo sobre o meu contrato bancário." class="btn btn-bone">Falar com o Dr. Reinaldo <span class="arrow">→</span></a>
+          <button type="button" data-open-modal class="btn btn-line">Solicitar análise do meu caso</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAP. 07 — PARA QUEM É ============ -->
+<section id="para-quem" class="relative py-28 sm:py-40">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+    <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">07</span>Para quem é</div>
+    <div class="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <h2 class="title-reveal display text-4xl sm:text-6xl"><span>Por que escolher a RF.</span></h2>
+        <ul class="mt-10 border-t border-white/[0.08] fade">
+          <li class="py-5 border-b border-white/[0.08] flex justify-between gap-6"><span class="text-bone">Atendimento direto</span><span class="text-ash text-right">Conversa com pessoas, sem robôs.</span></li>
+          <li class="py-5 border-b border-white/[0.08] flex justify-between gap-6"><span class="text-bone">Análise aprofundada</span><span class="text-ash text-right">Cláusula por cláusula, taxa por taxa.</span></li>
+          <li class="py-5 border-b border-white/[0.08] flex justify-between gap-6"><span class="text-bone">Viabilidade real</span><span class="text-ash text-right">Só indicamos o que faz sentido para o seu caso.</span></li>
+          <li class="py-5 border-b border-white/[0.08] flex justify-between gap-6"><span class="text-bone">Transparência total</span><span class="text-ash text-right">Clareza sobre custos e expectativas desde o início.</span></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-7 fade">
+        <div class="flex flex-wrap gap-x-8 gap-y-3 border-b border-white/[0.08] pb-4" role="tablist" aria-label="Perfis atendidos" id="tabList"></div>
+        <div id="tabPanel" class="pt-10 min-h-[16rem]" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAP. 08 — DÚVIDAS ============ -->
+<section id="faq" class="relative py-28 sm:py-40 bg-coal border-y border-white/[0.06]">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <div class="chapter wide text-ash fade"><span class="mono text-signal tracking-normal">08</span>Dúvidas</div>
+      <h2 class="title-reveal mt-14 display text-4xl sm:text-6xl"><span>Perguntas frequentes.</span></h2>
+    </div>
+    <div id="faqList" class="lg:col-span-8 border-t border-white/[0.12]"></div>
+  </div>
+</section>
+
+<!-- ============ CENA FINAL ============ -->
+<section class="relative overflow-hidden min-h-[90svh] flex items-center bg-black">
+  <div class="absolute inset-0 cta-earth" aria-hidden="true"></div>
+  <div class="absolute inset-0" style="background: linear-gradient(180deg, #050505 0%, rgba(5,5,5,.35) 30%, rgba(5,5,5,.5) 70%, #050505 100%)" aria-hidden="true"></div>
+  <div class="relative w-full max-w-[1600px] mx-auto px-5 sm:px-8 py-28">
+    <div class="wide text-ash fade">Atendimento digital em todo o Brasil</div>
+    <h2 class="title-reveal mt-8 display text-5xl sm:text-7xl xl:text-8xl max-w-5xl"><span>Fale com um especialista e entenda seu contrato.</span></h2>
+    <p class="mt-8 text-lg text-[#B5B1A8] fade">Atendimento individualizado, sem robôs e sem compromisso.</p>
+    <div class="mt-12 flex flex-col sm:flex-row gap-3 fade">
+      <button type="button" data-open-modal class="btn btn-bone">Solicitar análise do meu caso <span class="arrow">→</span></button>
+      <a data-wa="Olá! Gostaria de falar com um especialista sobre meu contrato bancário." class="btn btn-line">Falar no WhatsApp agora</a>
     </div>
   </div>
 </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="relative border-t border-line bg-[#07080C]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-3 gap-12">
-    <div>
-      <div class="flex items-center gap-3">
-        <img src="img/logo-rf.png" alt="Logo RF" width="40" height="40" class="w-10 h-10 rounded-xl ring-1 ring-white/15" />
-        <span class="font-semibold text-white">RF Consultoria Bancária</span>
+<!-- ============ CRÉDITOS (RODAPÉ) ============ -->
+<footer class="relative border-t border-white/[0.08] bg-ink">
+  <div class="max-w-[1600px] mx-auto px-5 sm:px-8 py-20 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-5">
+      <div class="flex items-center gap-4">
+        <img src="img/logo-rf.png" alt="Logo RF GROUP" width="48" height="48" class="w-12 h-12 rounded-[3px]" />
+        <div class="leading-tight">
+          <div class="mono text-[10px] tracking-[0.2em] text-ash uppercase">Uma empresa</div>
+          <div class="text-2xl text-bone font-semibold" style="font-stretch:125%;letter-spacing:.14em">RF GROUP<sup class="text-[10px] font-normal ml-0.5">®</sup></div>
+        </div>
       </div>
-      <p class="mt-4 text-sm text-gray-400">Revisão técnica de contratos, juros e cobranças bancárias para pessoas físicas e empresas.</p>
-      <div class="mt-6 inline-flex items-center gap-3 rounded-2xl lglass pl-2 pr-4 py-2">
-        <img src="img/logo-rf.png" alt="" width="32" height="32" class="relative z-10 w-8 h-8 rounded-lg" />
-        <span class="relative z-10 leading-tight">
-          <span class="block text-[10px] font-mono uppercase tracking-widest text-muted">Uma empresa</span>
-          <span class="block font-bold tracking-[0.18em] text-white">RF GROUP<sup class="text-[10px] font-normal ml-0.5 text-accent-blue">®</sup></span>
-        </span>
-      </div>
+      <p class="mt-6 text-ash max-w-sm">RF Consultoria Bancária — revisão técnica de contratos, juros e cobranças bancárias para pessoas físicas e empresas.</p>
     </div>
-    <div>
-      <h3 class="tag text-white">Contato</h3>
-      <ul class="mt-5 space-y-3.5 text-sm text-gray-400">
-        <li class="flex gap-3"><i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 text-accent-blue"></i><span>Sede administrativa: 5ª Avenida, 276, Vila Real, Balneário Camboriú - SC, 88337-010 · Atendimento digital em todo o Brasil</span></li>
-        <li><a href="tel:+554788631591" class="flex gap-3 hover:text-white transition-colors"><i data-lucide="phone" class="w-4 h-4 shrink-0 text-accent-green"></i><span class="font-mono tnum">(47) 8863-1591</span></a></li>
-        <li><a href="mailto:contato@rfconsultoriabancaria.com.br" class="flex gap-3 hover:text-white transition-colors break-all"><i data-lucide="mail" class="w-4 h-4 shrink-0 text-accent-purple"></i><span>contato@rfconsultoriabancaria.com.br</span></a></li>
+    <div class="md:col-span-4">
+      <div class="wide text-ash">Contato</div>
+      <ul class="mt-5 space-y-3 text-bone/90">
+        <li class="text-ash">5ª Avenida, 276, Vila Real<br />Balneário Camboriú - SC, 88337-010</li>
+        <li><a href="tel:+554788631591" class="link-line mono tnum">(47) 8863-1591</a></li>
+        <li><a href="mailto:contato@rfconsultoriabancaria.com.br" class="link-line break-all">contato@rfconsultoriabancaria.com.br</a></li>
       </ul>
     </div>
-    <div>
-      <h3 class="tag text-white">Informações legais</h3>
-      <ul class="mt-5 space-y-2.5 text-sm text-gray-400">
-        <li><a href="https://www.rfconsultoriabancaria.com.br/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Política de Privacidade (LGPD)</a></li>
-        <li><a href="https://www.rfconsultoriabancaria.com.br/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Termos de Uso</a></li>
+    <div class="md:col-span-3">
+      <div class="wide text-ash">Informações legais</div>
+      <ul class="mt-5 space-y-3">
+        <li><a href="https://www.rfconsultoriabancaria.com.br/" target="_blank" rel="noopener noreferrer" class="link-line">Política de Privacidade (LGPD)</a></li>
+        <li><a href="https://www.rfconsultoriabancaria.com.br/" target="_blank" rel="noopener noreferrer" class="link-line">Termos de Uso</a></li>
       </ul>
     </div>
   </div>
-  <div class="border-t border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-xs text-muted/80 leading-relaxed">
-      <p><strong class="text-muted">Aviso de transparência financeira:</strong> os resultados variam conforme a análise técnica individual de cada contrato e o histórico da dívida. Os percentuais e valores citados neste site são exemplos ilustrativos e não representam promessa ou garantia de resultado. A RF Consultoria Bancária não é instituição financeira, não concede crédito, não realiza empréstimos e não está vinculada a nenhum banco. Os serviços prestados são de consultoria e análise técnica de contratos.</p>
-      <p class="mt-4">© <span id="ano"></span> RF Consultoria Bancária · uma empresa RF GROUP®. Todos os direitos reservados. RF GROUP® é marca registrada.</p>
+  <div class="border-t border-white/[0.08]">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 py-10 text-xs text-ash/80 leading-relaxed space-y-4">
+      <p><span class="text-ash">Aviso de transparência financeira:</span> os resultados variam conforme a análise técnica individual de cada contrato e o histórico da dívida. Os percentuais e valores citados neste site são exemplos ilustrativos e não representam promessa ou garantia de resultado. A RF Consultoria Bancária não é instituição financeira, não concede crédito, não realiza empréstimos e não está vinculada a nenhum banco. Os serviços prestados são de consultoria e análise técnica de contratos.</p>
+      <p class="mono tracking-[0.08em]">Imagem da Terra à noite: NASA Earth Observatory (domínio público). Coordenadas e telemetria exibidas são ilustrativas.</p>
+      <p>© <span id="ano"></span> RF Consultoria Bancária · uma empresa RF GROUP®. Todos os direitos reservados. RF GROUP® é marca registrada.</p>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp flutuante -->
-<a data-wa="Olá! Vim pelo site e gostaria de atendimento." class="fixed bottom-5 right-5 z-40 group flex items-center gap-3" aria-label="Atendimento pelo WhatsApp">
-  <span class="hidden sm:flex flex-col items-end lglass rounded-xl px-3 py-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
-    <span class="relative z-10 text-sm font-semibold text-white">WhatsApp</span><span class="relative z-10 text-[11px] text-accent-green">● online agora</span>
-  </span>
-  <span class="w-14 h-14 rounded-full grid place-items-center bg-accent-green shadow-[0_10px_30px_-8px_rgba(16,185,129,.9)] hover:scale-105 transition-transform">
-    <svg viewBox="0 0 24 24" class="w-7 h-7 fill-white" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.48.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.04 21.8h-.01a9.86 9.86 0 0 1-5.02-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.84 9.84 0 0 1-1.51-5.25c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.120 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.29A11.82 11.82 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.49-8.41"/></svg>
-  </span>
+<!-- WhatsApp -->
+<a data-wa="Olá! Vim pelo site e gostaria de atendimento." class="fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-black/85 border border-white/20 hover:border-bone px-4 py-3 rounded-[2px] transition-colors" aria-label="Atendimento pelo WhatsApp">
+  <span class="w-1.5 h-1.5 rounded-full bg-[#3FB37F]"></span>
+  <span class="wide text-bone">WhatsApp</span>
 </a>
 
 <!-- Modal de análise -->
 <div id="modal" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="absolute inset-0 bg-black/70 backdrop-blur-md" data-close-modal></div>
+  <div class="absolute inset-0 bg-black/85" data-close-modal></div>
   <div class="relative min-h-full flex items-center justify-center p-4">
-    <form id="leadForm" class="beam relative w-full max-w-lg lglass rounded-3xl p-7 sm:p-9 shadow-2xl" novalidate>
-      <button type="button" data-close-modal class="absolute top-4 right-4 z-10 w-9 h-9 grid place-items-center rounded-lg btn-ghost" aria-label="Fechar"><i data-lucide="x" class="w-4 h-4"></i></button>
-      <div class="relative z-10">
-        <span class="tag text-accent-blue">// nova análise</span>
-        <h2 id="modalTitle" class="mt-2 text-2xl font-bold text-white">Solicitar análise do meu caso</h2>
-        <p class="mt-2 text-sm text-gray-400">Preencha os dados e continue a conversa no WhatsApp com nossa equipe.</p>
-        <div class="mt-6 space-y-4">
-          <div>
-            <label for="leadNome" class="block text-sm font-medium text-white mb-1.5">Nome</label>
-            <input id="leadNome" type="text" autocomplete="name" maxlength="80" class="field w-full rounded-xl px-4 py-3 text-sm" required />
-          </div>
-          <div>
-            <label for="leadTipo" class="block text-sm font-medium text-white mb-1.5">Tipo de contrato</label>
-            <select id="leadTipo" class="field w-full rounded-xl px-4 py-3 text-sm" required>
-              <option value="">Selecione...</option>
-              <option>Financiamento de Veículo</option>
-              <option>Empréstimo Pessoal / Renegociação</option>
-              <option>Empréstimo Consignado</option>
-              <option>Cartão de Crédito</option>
-              <option>Contrato Empresarial</option>
-            </select>
-          </div>
-          <div>
-            <label for="leadMsg" class="block text-sm font-medium text-white mb-1.5">Conte brevemente sua situação <span class="text-muted font-normal">(opcional)</span></label>
-            <textarea id="leadMsg" rows="3" maxlength="600" class="field w-full rounded-xl px-4 py-3 text-sm resize-none"></textarea>
-          </div>
-          <p id="leadErro" class="hidden text-sm text-red-400" role="alert"></p>
+    <form id="leadForm" class="relative w-full max-w-xl bg-ink border border-white/15 p-8 sm:p-12" novalidate>
+      <button type="button" data-close-modal class="absolute top-5 right-6 wide text-ash hover:text-bone" aria-label="Fechar">Fechar ✕</button>
+      <div class="wide text-signal">Nova análise</div>
+      <h2 id="modalTitle" class="mt-4 display text-3xl sm:text-4xl">Solicitar análise do meu caso</h2>
+      <p class="mt-3 text-ash">Preencha os dados e continue a conversa no WhatsApp com nossa equipe.</p>
+      <div class="mt-9 space-y-8">
+        <div>
+          <label for="leadNome" class="wide text-ash">Nome</label>
+          <input id="leadNome" type="text" autocomplete="name" maxlength="80" class="field mt-2" required />
         </div>
-        <button type="submit" class="mt-6 btn-green w-full inline-flex justify-center items-center gap-2 text-white font-semibold px-6 py-4 rounded-xl"><i data-lucide="message-circle" class="w-5 h-5"></i> Continuar no WhatsApp</button>
-        <p class="mt-3 text-[11px] text-muted text-center flex items-center justify-center gap-1.5"><i data-lucide="lock" class="w-3 h-3"></i> Seus dados são tratados conforme a LGPD.</p>
+        <div>
+          <label for="leadTipo" class="wide text-ash">Tipo de contrato</label>
+          <select id="leadTipo" class="field mt-2" required>
+            <option value="">Selecione</option>
+            <option>Financiamento de Veículo</option>
+            <option>Empréstimo Pessoal / Renegociação</option>
+            <option>Empréstimo Consignado</option>
+            <option>Cartão de Crédito</option>
+            <option>Contrato Empresarial</option>
+          </select>
+        </div>
+        <div>
+          <label for="leadMsg" class="wide text-ash">Sua situação <span class="normal-case tracking-normal font-normal">(opcional)</span></label>
+          <textarea id="leadMsg" rows="3" maxlength="600" class="field mt-2 resize-none"></textarea>
+        </div>
+        <p id="leadErro" class="hidden text-sm text-signal" role="alert"></p>
       </div>
+      <button type="submit" class="mt-10 btn btn-bone w-full">Continuar no WhatsApp <span class="arrow">→</span></button>
+      <p class="mt-4 mono text-[10px] tracking-[0.12em] uppercase text-ash text-center">Dados tratados conforme a LGPD</p>
     </form>
   </div>
 </div>
@@ -784,11 +667,22 @@ tailwind.config = {
 /* ============ CONFIG ============ */
 const CONFIG = Object.freeze({ whatsapp: '554788631591' });
 
+/* Sede: Balneário Camboriú (graus decimais) */
+const TARGET = { lat: -26.99, lon: -48.63 };
+
+const CONTRATOS = [
+  ['Empréstimos pessoais e renegociações', 'Conferência de taxa contratada, CET, tarifas e encargos em empréstimos e acordos de renegociação bancária.', 'CET · Taxa · Tarifas'],
+  ['Empréstimos consignados', 'INSS, servidores públicos e Forças Armadas, incluindo cartões RMC e RCC com descontos recorrentes em folha.', 'INSS · RMC · RCC'],
+  ['Financiamento de veículos', 'Veículos leves, pesados e frota: análise de juros, tarifas de cadastro, seguros e demais cobranças embutidas.', 'Leves · Pesados · Frota'],
+  ['Cartões de crédito', 'Juros do rotativo e parcelamentos compulsórios de fatura que elevam a dívida mês a mês.', 'Rotativo · Parcelamento'],
+  ['Contratos empresariais', 'Capital de giro, Pronampe e conta garantida: revisão das condições contratadas para devolver fôlego ao caixa da empresa.', 'Giro · Pronampe · Conta garantida'],
+];
+
 const PERFIS = [
-  { tab: 'Pessoas Físicas', icon: 'user', title: 'Pessoas físicas com empréstimos', text: 'Se você contratou empréstimos pessoais ou renegociou dívidas e sente que a parcela pesa mais do que o esperado, revisamos taxa, CET e tarifas para verificar se há cobranças fora do contratado ou acima da média de mercado.' },
-  { tab: 'Empresários', icon: 'briefcase', title: 'Empresários (capital de giro e fôlego de caixa)', text: 'Para empresas com capital de giro, Pronampe ou conta garantida, analisamos juros e encargos com o objetivo de aliviar o fluxo de caixa e dar previsibilidade financeira ao negócio.' },
-  { tab: 'Aposentados e Pensionistas', icon: 'heart-handshake', title: 'Aposentados e pensionistas (descontos em folha)', text: 'Revisamos consignados e cartões RMC/RCC com descontos mensais no benefício, verificando se as condições contratadas e cobradas estão corretas e foram devidamente informadas.' },
-  { tab: 'Cartão e Financiamentos', icon: 'credit-card', title: 'Endividados com cartão e financiamentos', text: 'Se o rotativo do cartão ou o financiamento do veículo virou uma bola de neve, analisamos os encargos aplicados e as alternativas técnicas disponíveis para reorganizar a dívida.' },
+  { tab: 'Pessoas físicas', title: 'Pessoas físicas com empréstimos', text: 'Se você contratou empréstimos pessoais ou renegociou dívidas e sente que a parcela pesa mais do que o esperado, revisamos taxa, CET e tarifas para verificar se há cobranças fora do contratado ou acima da média de mercado.' },
+  { tab: 'Empresários', title: 'Empresários — capital de giro e fôlego de caixa', text: 'Para empresas com capital de giro, Pronampe ou conta garantida, analisamos juros e encargos com o objetivo de aliviar o fluxo de caixa e dar previsibilidade financeira ao negócio.' },
+  { tab: 'Aposentados e pensionistas', title: 'Aposentados e pensionistas — descontos em folha', text: 'Revisamos consignados e cartões RMC/RCC com descontos mensais no benefício, verificando se as condições contratadas e cobradas estão corretas e foram devidamente informadas.' },
+  { tab: 'Cartão e financiamentos', title: 'Endividados com cartão e financiamentos', text: 'Se o rotativo do cartão ou o financiamento do veículo virou uma bola de neve, analisamos os encargos aplicados e as alternativas técnicas disponíveis para reorganizar a dívida.' },
 ];
 
 const FAQ = [
@@ -800,26 +694,32 @@ const FAQ = [
   ['Quanto tempo leva para sair o resultado do cálculo revisional?', 'O prazo varia conforme a complexidade e a completude dos documentos. Após recebermos a documentação, informamos o prazo estimado para o seu caso específico. Eventuais negociações com a instituição financeira têm prazo próprio, que não depende só de nós.'],
 ];
 
-const TICKER = ['CET', 'TAXA MÉDIA BACEN', 'CAPITALIZAÇÃO', 'SEGURO PRESTAMISTA', 'TARIFA DE CADASTRO', 'RMC · RCC', 'ROTATIVO', 'PRONAMPE', 'CAPITAL DE GIRO', 'CONTA GARANTIDA', 'VENDA CASADA', 'CONSIGNADO INSS'];
-
-/* Linhas do documento escaneado (largura em %) e quais linhas disparam cada alerta */
-const CLAUSES = [92, 78, 85, 64, 90, 70, 88, 60, 82, 74, 95, 58, 80, 68, 86, 72];
-const FLAG_AT = { 3: 0, 7: 1, 11: 2 };
-
 /* ============ UTILS ============ */
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const finePointer = window.matchMedia('(pointer: fine)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const waLink = (msg) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
 const brl = (v, dec = 0) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: dec, maximumFractionDigits: dec });
-const icons = () => { try { window.lucide?.createIcons(); } catch (err) { console.error('Falha ao renderizar ícones', err); } };
+const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 /** Converte "1.250,50" ou "1250.5" em número; retorna NaN se inválido. */
 function parseMoney(raw) {
   const s = String(raw).trim().replace(/[^\d.,]/g, '');
   if (!s) return NaN;
   return Number(s.includes(',') ? s.replace(/\./g, '').replace(',', '.') : s);
+}
+
+/** Graus decimais → 26°59′S */
+function dms(value, pos, neg) {
+  const a = Math.abs(value);
+  const d = Math.floor(a);
+  const m = Math.round((a - d) * 60);
+  const [dd, mm] = m === 60 ? [d + 1, 0] : [d, m];
+  return `${dd}°${String(mm).padStart(2, '0')}′${value >= 0 ? pos : neg}`;
 }
 
 function safe(name, fn) {
@@ -831,34 +731,21 @@ safe('intro', initIntro);
 
 document.addEventListener('DOMContentLoaded', () => {
   safe('ano', () => { $('#ano').textContent = new Date().getFullYear(); });
-  safe('whatsapp', () => {
-    $$('[data-wa]').forEach((a) => { a.href = waLink(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
-  });
-  safe('ticker', () => {
-    const html = TICKER.map((t) => `<span class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue shadow-[0_0_8px_#3B82F6]"></span>${t}</span>`).join('');
-    $('#tickerItems').innerHTML = html;
-    $('#tickerItems2').innerHTML = html;
-  });
-  safe('split', splitWords);
+  safe('whatsapp', () => $$('[data-wa]').forEach((a) => { a.href = waLink(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener noreferrer'; }));
+  safe('contratos', renderContracts);
   safe('tabs', renderTabs);
   safe('faq', renderFaq);
-  icons();
-
   safe('header', initHeader);
   safe('menu', initMenu);
   safe('spy', initSpy);
   safe('reveal', initReveal);
   safe('counters', initCounters);
-  safe('spot', initSpotlight);
-  safe('scanner', initScanner);
+  safe('timecode', initTimecode);
   safe('simulador', initSimulator);
   safe('modal', initModal);
-  safe('aurora', initAurora);
-  safe('sphere', initSphere);
-  safe('parallax', initParallax);
-  safe('tilt', initTilt);
-  safe('magnetic', initMagnetic);
-  safe('cursor', initCursorGlow);
+  safe('estrelas', initStars);
+  safe('hero', initHero);
+  safe('dolly', initDolly);
   safe('timeline', initTimeline);
 });
 
@@ -867,185 +754,52 @@ function initIntro() {
   const intro = $('#intro');
   if (!intro) return;
   let seen = false;
-  try { seen = sessionStorage.getItem('rf-intro') === '1'; sessionStorage.setItem('rf-intro', '1'); } catch { /* armazenamento indisponível: mostra a abertura normalmente */ }
+  try { seen = sessionStorage.getItem('rf-intro') === '1'; sessionStorage.setItem('rf-intro', '1'); } catch { /* sem armazenamento: exibe a abertura normalmente */ }
   if (seen || reduceMotion) { intro.classList.add('skip'); return; }
   intro.addEventListener('click', () => intro.classList.add('done'), { once: true });
-  const steps = ['CONECTANDO TAXAS BACEN', 'SISTEMA PRONTO'];
-  const label = $('#introText');
-  steps.forEach((s, i) => setTimeout(() => { if (label) label.textContent = s; }, 900 + i * 800));
 }
 
-/* ============ TÍTULOS PALAVRA POR PALAVRA ============ */
-function splitWords() {
-  $$('[data-split]').forEach((el) => {
-    let idx = 0;
-    const wrap = (node, inGradient) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const frag = document.createDocumentFragment();
-        node.textContent.split(/(\s+)/).forEach((part) => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-          const s = document.createElement('span');
-          s.className = inGradient ? 'word text-gradient' : 'word';
-          s.style.transitionDelay = `${idx++ * 0.06}s`;
-          s.textContent = part;
-          frag.appendChild(s);
-        });
-        node.replaceWith(frag);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const grad = inGradient || node.classList.contains('text-gradient');
-        if (grad) node.classList.remove('text-gradient');
-        Array.from(node.childNodes).forEach((c) => wrap(c, grad));
-      }
-    };
-    Array.from(el.childNodes).forEach((c) => wrap(c, false));
-  });
-}
-
-/* ============ HEADER / MENU / SPY ============ */
-function initHeader() {
-  const shell = $('#navShell'), bar = $('#progress');
-  const onScroll = () => {
-    const scrolled = window.scrollY > 20;
-    shell.classList.toggle('lglass', scrolled);
-    shell.classList.toggle('border-transparent', !scrolled);
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+/* ============ TIMECODE (24 fps) ============ */
+function initTimecode() {
+  const els = $$('[data-tc]');
+  const t0 = performance.now();
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const total = Math.floor((performance.now() - t0) / (1000 / 24));
+    const f = total % 24, s = Math.floor(total / 24);
+    const text = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}:${pad(f)}`;
+    els.forEach((el) => { el.textContent = text; });
   };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  tick();
+  if (!reduceMotion) setInterval(tick, 1000 / 24);
 }
 
-function initMenu() {
-  const btn = $('#menuBtn'), menu = $('#mobileMenu');
-  const setOpen = (open) => { menu.classList.toggle('hidden', !open); btn.setAttribute('aria-expanded', String(open)); };
-  btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
-  $$('#mobileMenu a, #mobileMenu button').forEach((el) => el.addEventListener('click', () => setOpen(false)));
+/* ============ CONTEÚDO DINÂMICO ============ */
+function renderContracts() {
+  $('#contractList').innerHTML = CONTRATOS.map(([title, desc, tags], i) => `
+    <article class="row fade grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-11 items-baseline">
+      <div class="md:col-span-1 flex items-center gap-3"><span class="row-mark"></span><span class="mono text-sm text-ash tnum">${String(i + 1).padStart(2, '0')}</span></div>
+      <h3 class="md:col-span-4 text-2xl sm:text-3xl text-bone font-medium" style="font-stretch:112%;letter-spacing:-.01em">${escapeHtml(title)}</h3>
+      <p class="md:col-span-5 text-ash leading-relaxed">${escapeHtml(desc)}</p>
+      <div class="md:col-span-2 mono text-[10px] tracking-[0.14em] uppercase text-ash md:text-right">${escapeHtml(tags)}</div>
+    </article>`).join('');
 }
 
-function initSpy() {
-  const links = $$('[data-spy]');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) links.forEach((l) => l.classList.toggle('active', l.dataset.spy === e.target.id)); });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  links.forEach((l) => { const t = document.getElementById(l.dataset.spy); if (t) io.observe(t); });
-}
-
-/* ============ REVELAÇÃO / CONTADORES / HOLOFOTE ============ */
-function initReveal() {
-  const targets = [...$$('.reveal'), ...$$('.split')];
-  const showBars = (el) => $$('.bar-fill:not(.sim-bar)', el).forEach((b) => { b.style.width = `${b.dataset.w}%`; });
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    targets.forEach((el) => { el.classList.add(el.classList.contains('split') ? 'on' : 'visible'); showBars(el); });
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add(e.target.classList.contains('split') ? 'on' : 'visible');
-      setTimeout(() => showBars(e.target), 300);
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.12 });
-  targets.forEach((el) => io.observe(el));
-}
-
-function initCounters() {
-  const run = (el) => {
-    const target = Number(el.dataset.count);
-    if (reduceMotion) { el.textContent = target; return; }
-    const start = performance.now(), dur = 1500;
-    const step = (now) => {
-      const p = Math.min(1, (now - start) / dur);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.6 });
-  $$('[data-count]').forEach((el) => io.observe(el));
-}
-
-function initSpotlight() {
-  document.addEventListener('pointermove', (e) => {
-    const card = e.target.closest?.('.spot');
-    if (!card) return;
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    card.style.setProperty('--my', `${e.clientY - r.top}px`);
-  }, { passive: true });
-}
-
-/* ============ SCANNER DE CONTRATO ============ */
-function initScanner() {
-  const box = $('#clauses'), beam = $('#scanBeam'), pct = $('#scanPct');
-  const pills = $$('#flags .flag-pill');
-  box.innerHTML = CLAUSES.map((w) => `<div class="clause" style="width:${w}%"></div>`).join('');
-  const rows = $$('.clause', box);
-
-  if (reduceMotion) {
-    rows.forEach((r, i) => r.classList.add(i in FLAG_AT ? 'flag' : 'ok'));
-    pills.forEach((p) => p.classList.add('on'));
-    pct.textContent = '100%';
-    beam.style.display = 'none';
-    return;
-  }
-
-  const DURATION = 4200, HOLD = 2600;
-  let start = 0, visible = true, rafId = 0;
-  const reset = () => {
-    rows.forEach((r) => r.classList.remove('flag', 'ok'));
-    pills.forEach((p) => p.classList.remove('on'));
-    start = performance.now();
-  };
-  const frame = (now) => {
-    const elapsed = now - start;
-    const t = elapsed / DURATION;
-    if (t <= 1) {
-      const y = box.offsetTop + t * box.offsetHeight;
-      beam.style.transform = `translateY(${y}px)`;
-      pct.textContent = `${Math.round(t * 100)}%`;
-      rows.forEach((r, i) => {
-        if (r.classList.contains('flag') || r.classList.contains('ok')) return;
-        // offsetTop das linhas já é relativo ao documento (pai posicionado), igual ao feixe
-        if (y >= r.offsetTop + r.offsetHeight) {
-          if (i in FLAG_AT) { r.classList.add('flag'); pills[FLAG_AT[i]]?.classList.add('on'); }
-          else r.classList.add('ok');
-        }
-      });
-    } else if (elapsed > DURATION + HOLD) {
-      reset();
-    } else if (!pills[3].classList.contains('on')) {
-      pct.textContent = '100%';
-      rows.forEach((r, i) => r.classList.add(i in FLAG_AT ? 'flag' : 'ok'));
-      pills.forEach((p) => p.classList.add('on'));
-    }
-    rafId = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
-  };
-  const startLoop = () => { if (!rafId) { reset(); rafId = requestAnimationFrame(frame); } };
-  document.addEventListener('visibilitychange', startLoop);
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) startLoop(); }).observe(box);
-  startLoop();
-}
-
-/* ============ TABS ============ */
 function renderTabs() {
   const list = $('#tabList'), panel = $('#tabPanel');
-  list.innerHTML = PERFIS.map((p, i) => `<button type="button" role="tab" data-tab="${i}" class="tab-btn">${p.tab}</button>`).join('');
+  list.innerHTML = PERFIS.map((p, i) => `<button type="button" role="tab" data-tab="${i}" class="tab-btn wide pb-1 border-b transition-colors">${escapeHtml(p.tab)}</button>`).join('');
   const select = (i) => {
     $$('.tab-btn', list).forEach((b, idx) => {
       const on = idx === i;
       b.setAttribute('aria-selected', String(on));
-      b.className = 'tab-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors ' +
-        (on ? 'border-accent-blue/60 bg-accent-blue/15 text-white shadow-[0_0_20px_-6px_rgba(59,130,246,.8)]' : 'border-white/10 text-gray-400 hover:text-white hover:border-white/25');
+      b.classList.toggle('text-bone', on); b.classList.toggle('border-signal', on);
+      b.classList.toggle('text-ash', !on); b.classList.toggle('border-transparent', !on);
     });
     const p = PERFIS[i];
     panel.innerHTML = `
-      <span class="w-14 h-14 rounded-2xl grid place-items-center bg-gradient-to-br from-accent-blue/25 to-accent-purple/25 border border-white/10"><i data-lucide="${p.icon}" class="w-6 h-6 text-white"></i></span>
-      <div><h4 class="text-xl font-semibold text-white">${p.title}</h4><p class="mt-2 text-gray-400 leading-relaxed max-w-3xl">${p.text}</p></div>`;
-    icons();
+      <div class="mono text-xs text-signal tnum">${String(i + 1).padStart(2, '0')} / ${String(PERFIS.length).padStart(2, '0')}</div>
+      <h3 class="mt-5 text-3xl sm:text-4xl text-bone font-medium" style="font-stretch:112%;letter-spacing:-.015em">${escapeHtml(p.title)}</h3>
+      <p class="mt-5 text-lg leading-relaxed max-w-2xl">${escapeHtml(p.text)}</p>`;
   };
   list.addEventListener('click', (e) => { const b = e.target.closest('.tab-btn'); if (b) select(Number(b.dataset.tab)); });
   list.addEventListener('keydown', (e) => {
@@ -1058,16 +812,15 @@ function renderTabs() {
   select(0);
 }
 
-/* ============ FAQ ============ */
 function renderFaq() {
   const box = $('#faqList');
   box.innerHTML = FAQ.map(([q, a], i) => `
-    <div class="faq-item reveal spot ${i === 0 ? 'open' : ''}">
-      <button type="button" class="relative w-full flex items-center justify-between gap-4 text-left p-5 sm:p-6" aria-expanded="${i === 0}" aria-controls="faq-${i}">
-        <span class="font-medium text-white">${q}</span>
-        <i data-lucide="plus" class="faq-icon w-5 h-5 shrink-0 text-muted"></i>
+    <div class="faq-item fade border-b border-white/[0.12] ${i === 0 ? 'open' : ''}">
+      <button type="button" class="w-full flex items-start justify-between gap-8 text-left py-8" aria-expanded="${i === 0}" aria-controls="faq-${i}">
+        <span class="flex gap-6"><span class="mono text-xs text-ash pt-2 tnum">${String(i + 1).padStart(2, '0')}</span><span class="text-xl sm:text-2xl text-bone" style="font-stretch:108%">${escapeHtml(q)}</span></span>
+        <span class="faq-sign mono text-2xl text-ash leading-none pt-1" aria-hidden="true">+</span>
       </button>
-      <div class="faq-body relative" id="faq-${i}"><div class="overflow-hidden"><p class="px-5 sm:px-6 pb-6 text-gray-400 leading-relaxed">${a}</p></div></div>
+      <div class="faq-body" id="faq-${i}"><div class="overflow-hidden"><p class="pb-9 pl-12 text-ash leading-relaxed max-w-3xl">${escapeHtml(a)}</p></div></div>
     </div>`).join('');
   box.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
@@ -1079,13 +832,66 @@ function renderFaq() {
   });
 }
 
+/* ============ HEADER / MENU / SPY ============ */
+function initHeader() {
+  const header = $('#header'), hero = $('#inicio');
+  const onScroll = () => {
+    const pastHero = window.scrollY > hero.offsetHeight - window.innerHeight - 10;
+    header.style.background = pastHero ? 'rgba(5,5,5,.92)' : 'transparent';
+    header.style.borderBottom = pastHero ? '1px solid rgba(236,232,223,.08)' : '1px solid transparent';
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function initMenu() {
+  const btn = $('#menuBtn'), menu = $('#mobileMenu');
+  const setOpen = (open) => { menu.classList.toggle('hidden', !open); btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Fechar' : 'Menu'; };
+  btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+  $$('#mobileMenu a, #mobileMenu button').forEach((el) => el.addEventListener('click', () => setOpen(false)));
+}
+
+function initSpy() {
+  const links = $$('[data-spy]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) links.forEach((l) => l.classList.toggle('active', l.dataset.spy === e.target.id)); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach((l) => { const t = document.getElementById(l.dataset.spy); if (t) io.observe(t); });
+}
+
+/* ============ REVELAÇÕES / CONTADORES ============ */
+function initReveal() {
+  const els = $$('.fade, .title-reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('on')); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+  els.forEach((el) => io.observe(el));
+}
+
+function initCounters() {
+  const run = (el) => {
+    const target = Number(el.dataset.count);
+    if (reduceMotion) { el.textContent = target; return; }
+    const start = performance.now(), dur = 1800;
+    const step = (now) => {
+      const p = Math.min(1, (now - start) / dur);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  $$('[data-count]').forEach((el) => io.observe(el));
+}
+
 /* ============ SIMULADOR ============ */
 function initSimulator() {
   const form = $('#simForm'), erro = $('#simErro');
-  const vazio = $('#simVazio'), loading = $('#simLoading'), cheio = $('#simCheio');
-  const ring = $('#ring');
-  const CIRC = 2 * Math.PI * 52;
-  let timer = null;
+  const vazio = $('#simVazio'), loading = $('#simLoading'), cheio = $('#simCheio'), dots = $('#simDots');
+  let timer = null, dotTimer = null;
   const showError = (msg) => { erro.textContent = msg; erro.classList.remove('hidden'); };
 
   form.addEventListener('submit', (e) => {
@@ -1103,25 +909,26 @@ function initSimulator() {
     const total = parcela * qtd;
     const min = total * 0.40, max = total * 0.70;
 
-    clearTimeout(timer);
+    clearTimeout(timer); clearInterval(dotTimer);
     vazio.classList.add('hidden'); cheio.classList.add('hidden'); loading.classList.remove('hidden');
-    $$('.sim-bar', cheio).forEach((b) => { b.style.width = '0%'; });
-    ring.style.strokeDashoffset = String(CIRC);
+    $$('.sim-line', cheio).forEach((b) => { b.style.width = '0%'; });
+    let n = 0;
+    dotTimer = setInterval(() => { n = (n + 1) % 4; dots.textContent = '.'.repeat(n); }, 220);
 
     timer = setTimeout(() => {
+      clearInterval(dotTimer);
       $('#simTipoOut').textContent = tipo;
       $('#simTotal').textContent = brl(total, 2);
       $('#simMin').textContent = brl(min);
       $('#simMax').textContent = brl(max);
       loading.classList.add('hidden'); cheio.classList.remove('hidden');
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        $$('.sim-bar', cheio).forEach((b) => { b.style.width = `${b.dataset.w}%`; });
-        ring.style.strokeDashoffset = String(CIRC * (1 - 0.7));
+        $$('.sim-line', cheio).forEach((b) => { b.style.width = `${b.dataset.w}%`; });
       }));
       const texto = `Olá! Fiz a simulação no site e gostaria de uma análise técnica do meu contrato.\nTipo: ${tipo}\nParcela atual: ${brl(parcela, 2)}\nParcelas restantes: ${qtd}\nTotal estimado: ${brl(total, 2)}\nFaixa de economia potencial (estimativa educativa): ${brl(min)} a ${brl(max)}`;
       const a = $('#simWa');
       a.href = waLink(texto); a.target = '_blank'; a.rel = 'noopener noreferrer';
-    }, reduceMotion ? 0 : 900);
+    }, reduceMotion ? 0 : 1100);
   });
 }
 
@@ -1160,37 +967,166 @@ function initModal() {
   });
 }
 
-/* ============ AURORA EM WEBGL ============ */
-function initAurora() {
-  const canvas = $('#aurora');
-  const gl = canvas?.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
-  if (!gl) { canvas?.remove(); return; }
+/* ============ CAMPO DE ESTRELAS ============ */
+function initStars() {
+  const canvas = $('#stars');
+  const ctx = canvas?.getContext('2d');
+  if (!ctx) return;
+  const draw = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    let seed = 7;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const count = Math.round((w * h) / 2600);
+    for (let i = 0; i < count; i++) {
+      const r = rnd();
+      const size = r > 0.985 ? 1.3 : r > 0.9 ? 0.85 : 0.5;
+      ctx.globalAlpha = 0.15 + rnd() * 0.6;
+      ctx.fillStyle = rnd() > 0.85 ? '#F4E6CF' : '#E6EAF2';
+      ctx.fillRect(rnd() * w, rnd() * h, size, size);
+    }
+    ctx.globalAlpha = 1;
+  };
+  draw();
+  window.addEventListener('resize', draw, { passive: true });
+}
 
-  const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const fs = `precision mediump float;
-uniform vec2 r;uniform float t;uniform vec2 m;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);
-  return mix(mix(h(i),h(i+vec2(1.,0.)),u.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),u.x),u.y);}
-float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.02;a*=.5;}return v;}
+/* ============ HERÓI: GLOBO REAL (NASA) + CÂMERA GUIADA PELA ROLAGEM ============ */
+function initHero() {
+  const hero = $('#inicio'), stage = $('#heroStage');
+  const cards = $$('.hero-card', hero);
+  const cue = $('#scrollCue');
+  const hudLat = $('#hudLat'), hudLon = $('#hudLon'), hudAlt = $('#hudAlt');
+  const stars = $('#stars');
+
+  const targetYaw = -TARGET.lon * Math.PI / 180;
+  const targetPitch = TARGET.lat * Math.PI / 180;
+  const startYaw = 74 * Math.PI / 180;      // começa sobre as Américas do Norte
+  const startPitch = 24 * Math.PI / 180;
+
+  const progress = () => {
+    const total = hero.offsetHeight - window.innerHeight;
+    return total > 0 ? clamp(-hero.getBoundingClientRect().top / total) : 0;
+  };
+
+  /** Estado da câmera para um progresso p (0 = órbita alta, 1 = alvo travado) */
+  const camera = (p, time) => {
+    const e = easeInOut(clamp((p - 0.06) / 0.86));
+    const drift = reduceMotion ? 0 : time * 0.012 * (1 - e);
+    let dYaw = targetYaw - (startYaw + drift);
+    dYaw = Math.atan2(Math.sin(dYaw), Math.cos(dYaw));
+    const portrait = window.innerWidth < window.innerHeight;
+    return {
+      e,
+      yaw: startYaw + drift + dYaw * e,
+      pitch: lerp(startPitch, targetPitch, e),
+      roll: lerp(0.32, 0.06, e),
+      dist: lerp(portrait ? 3.5 : 3.7, portrait ? 2.25 : 2.05, e),
+      cx: portrait ? 0 : lerp(0.55, 0.3, e),
+      cy: portrait ? lerp(-0.85, -0.6, e) : lerp(-0.05, -0.22, e),
+    };
+  };
+
+  const updateOverlay = (p, cam) => {
+    const windows = [[-1, -1, 0.2, 0.3], [0.32, 0.4, 0.58, 0.66], [0.7, 0.8, 2, 2]];
+    cards.forEach((card, i) => {
+      const [a, b, c, d] = windows[i];
+      const o = (a < 0 ? 1 : smooth(a, b, p)) * (1 - smooth(c, d, p));
+      card.style.opacity = o.toFixed(3);
+      card.style.transform = `translate3d(0, ${((1 - o) * (p < (b + c) / 2 ? 24 : -24)).toFixed(1)}px, 0)`;
+      card.classList.toggle('live', o > 0.6);
+    });
+    if (cue) cue.style.opacity = p > 0.04 ? '0' : '1';
+    const lat = cam.pitch * 180 / Math.PI;
+    let lon = -cam.yaw * 180 / Math.PI;
+    lon = ((lon + 540) % 360) - 180;
+    hudLat.textContent = dms(lat, 'N', 'S');
+    hudLon.textContent = dms(lon, 'E', 'W');
+    if (hudAlt) hudAlt.textContent = `${Math.round((cam.dist - 1) * 6371).toLocaleString('pt-BR')} km`;
+    if (stars) stars.style.transform = `translate3d(${(-cam.e * 40).toFixed(1)}px, ${(cam.e * 30).toFixed(1)}px, 0) scale(${1 + cam.e * 0.08})`;
+  };
+
+  const renderer = createGlobeRenderer($('#globe'), () => useFallback());
+  let fallbackEl = null;
+  function useFallback() {
+    $('#globe')?.classList.add('hidden');
+    const wrap = $('#globeFallback');
+    wrap.classList.remove('hidden');
+    fallbackEl = $('.fallback-earth', wrap);
+  }
+  if (!renderer) useFallback();
+
+  const placeFallback = (cam) => {
+    if (!fallbackEl) return;
+    const w = stage.clientWidth, h = stage.clientHeight;
+    const tanH = Math.tan((35 * Math.PI / 180) / 2);
+    const radiusPx = (h / 2) / (Math.sqrt(cam.dist * cam.dist - 1) * tanH);
+    const d = radiusPx * 2;
+    const k = (cam.dist - 1) / cam.dist;
+    const x = w / 2 + cam.cx * k * (w / 2), y = h / 2 - cam.cy * k * (h / 2);
+    fallbackEl.style.width = `${d}px`; fallbackEl.style.height = `${d}px`;
+    fallbackEl.style.left = `${x - d / 2}px`; fallbackEl.style.top = `${y - d / 2}px`;
+    fallbackEl.style.setProperty('--d', `${d}px`);
+  };
+
+  let visible = true, rafId = 0;
+  const t0 = performance.now();
+  const frame = (now) => {
+    const p = progress();
+    const cam = camera(p, (now - t0) / 1000);
+    updateOverlay(p, cam);
+    if (renderer && !fallbackEl) renderer.draw(cam, (now - t0) / 1000, smooth(0.62, 0.8, p));
+    else placeFallback(cam);
+    rafId = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
+  };
+  const start = () => { if (!rafId) rafId = requestAnimationFrame(frame); };
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) start(); }).observe(hero);
+  document.addEventListener('visibilitychange', start);
+  window.addEventListener('resize', () => { renderer?.resize(); start(); }, { passive: true });
+  start();
+}
+
+/** Renderizador WebGL do globo com a textura noturna da NASA. Retorna null se não houver WebGL. */
+function createGlobeRenderer(canvas, onFail) {
+  if (!canvas) return null;
+  const gl = canvas.getContext('webgl2', { antialias: true, alpha: true }) || canvas.getContext('webgl', { antialias: true, alpha: true });
+  if (!gl) return null;
+  const isGL2 = typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
+
+  const vs = `attribute vec3 aPos;attribute vec2 aUv;
+uniform mat4 uProj;uniform mat3 uRot;uniform vec3 uOff;uniform float uScale;
+varying vec2 vUv;varying vec3 vN;varying vec3 vObj;varying vec3 vView;
+void main(){vec3 n=uRot*aPos;vec3 wp=n*uScale+uOff;vN=n;vObj=aPos;vView=-wp;vUv=aUv;gl_Position=uProj*vec4(wp,1.);}`;
+  const fs = `precision highp float;
+uniform sampler2D uTex;uniform float uTime;uniform vec3 uTarget;uniform float uLock;uniform float uAtmo;
+varying vec2 vUv;varying vec3 vN;varying vec3 vObj;varying vec3 vView;
 void main(){
-  vec2 uv=gl_FragCoord.xy/r;
-  vec2 p=uv*vec2(r.x/r.y,1.)*1.7;
-  float tt=t*.035;
-  vec2 q=vec2(fbm(p+tt),fbm(p+vec2(5.2,1.3)-tt));
-  float f=fbm(p+2.2*q+m*.35+tt*2.);
-  vec3 bg=vec3(.035,.039,.059);
-  vec3 blue=vec3(.231,.51,.965),pur=vec3(.545,.361,.965),grn=vec3(.063,.725,.506);
-  vec3 c=mix(bg,blue,smoothstep(.38,.95,f)*.6);
-  c=mix(c,pur,smoothstep(.5,1.05,q.x)*.5);
-  c=mix(c,grn,smoothstep(.55,1.,q.y*f*1.4)*.28);
-  c*=.45+.55*smoothstep(0.,.6,uv.y);
-  gl_FragColor=vec4(c,1.);
+  vec3 N=normalize(vN);vec3 V=normalize(vView);float ndv=dot(N,V);
+  if(uAtmo>.5){float i=smoothstep(0.,.3,-ndv);i*=i;gl_FragColor=vec4(vec3(.42,.55,.82)*i*.5,1.);return;}
+  vec3 t=texture2D(uTex,vUv).rgb;
+  float g=dot(t,vec3(.333));
+  vec3 dark=mix(vec3(g),t,.32)*.9;
+  float lights=smoothstep(.22,.75,max(t.r,t.g)-t.b*.35);
+  vec3 col=dark+vec3(1.,.78,.5)*lights*1.6;
+  float k=max(ndv,0.);
+  col*=.18+.82*pow(k,.55);
+  col+=vec3(.42,.55,.82)*pow(1.-k,3.2)*.42;
+  vec3 T=normalize(uTarget);
+  float ang=acos(clamp(dot(normalize(vObj),T),-1.,1.));
+  float pulse=fract(uTime*.55);
+  float ring=smoothstep(.004,0.,abs(ang-(.012+pulse*.075)))*(1.-pulse);
+  float ring2=smoothstep(.0025,0.,abs(ang-.032));
+  float core=smoothstep(.007,.004,ang);
+  col=mix(col,vec3(1.,.36,.12),clamp((ring+ring2+core)*uLock,0.,1.));
+  gl_FragColor=vec4(col,1.);
 }`;
   const compile = (type, src) => {
     const s = gl.createShader(type);
     gl.shaderSource(s, src); gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) || 'Erro no shader');
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) || 'Falha no shader');
     return s;
   };
   let prog;
@@ -1201,199 +1137,144 @@ void main(){
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error('Falha ao ligar o programa WebGL');
   } catch (err) {
-    canvas.remove();   // o fundo em CSS (aurora-fallback) continua visível
-    throw err;
+    console.error('[globo]', err);
+    return null;
   }
   gl.useProgram(prog);
 
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(prog, 'p');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  const uR = gl.getUniformLocation(prog, 'r'), uT = gl.getUniformLocation(prog, 't'), uM = gl.getUniformLocation(prog, 'm');
+  // Esfera UV
+  const SX = 160, SY = 80;
+  const pos = [], uv = [], idx = [];
+  for (let y = 0; y <= SY; y++) {
+    const v = y / SY, lat = Math.PI / 2 - v * Math.PI;
+    for (let x = 0; x <= SX; x++) {
+      const u = x / SX, lon = u * 2 * Math.PI - Math.PI;
+      pos.push(Math.cos(lat) * Math.sin(lon), Math.sin(lat), Math.cos(lat) * Math.cos(lon));
+      uv.push(u, v);
+    }
+  }
+  for (let y = 0; y < SY; y++) {
+    for (let x = 0; x < SX; x++) {
+      const a = y * (SX + 1) + x, b = a + SX + 1;
+      idx.push(a, b, a + 1, b, b + 1, a + 1);
+    }
+  }
+  const buffer = (target, data) => { const b = gl.createBuffer(); gl.bindBuffer(target, b); gl.bufferData(target, data, gl.STATIC_DRAW); return b; };
+  const bindAttr = (name, buf, size) => { const loc = gl.getAttribLocation(prog, name); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, gl.FLOAT, false, 0, 0); };
+  bindAttr('aPos', buffer(gl.ARRAY_BUFFER, new Float32Array(pos)), 3);
+  bindAttr('aUv', buffer(gl.ARRAY_BUFFER, new Float32Array(uv)), 2);
+  buffer(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(idx));
 
-  // Meia resolução: a aurora é difusa e isso mantém a fluidez mesmo em telas 4K
-  const SCALE = 0.5;
+  const U = {};
+  ['uProj', 'uRot', 'uOff', 'uScale', 'uTex', 'uTime', 'uTarget', 'uLock', 'uAtmo'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+  const latR = TARGET.lat * Math.PI / 180, lonR = TARGET.lon * Math.PI / 180;
+  gl.uniform3f(U.uTarget, Math.cos(latR) * Math.sin(lonR), Math.sin(latR), Math.cos(latR) * Math.cos(lonR));
+  gl.uniform1i(U.uTex, 0);
+
+  // Textura (foto noturna da NASA)
+  let ready = false;
+  const tex = gl.createTexture();
+  const img = new Image();
+  img.decoding = 'async';
+  img.onload = () => {
+    try {
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      if (isGL2) { gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); }
+      else gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
+      if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+      ready = true;
+      canvas.classList.add('ready');
+    } catch (err) {
+      // Ex.: arquivo aberto direto do disco (file://) bloqueia texturas — usa o globo em CSS
+      console.warn('[globo] textura indisponível, usando alternativa em CSS', err);
+      onFail();
+    }
+  };
+  img.onerror = () => onFail();
+  img.src = 'img/terra-noite-nasa.jpg';
+
+  const FOV = 35 * Math.PI / 180;
+  let aspect = 1;
   const resize = () => {
-    canvas.width = Math.max(1, Math.round(canvas.clientWidth * SCALE));
-    canvas.height = Math.max(1, Math.round(canvas.clientHeight * SCALE));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.max(1, Math.round(canvas.clientWidth * dpr));
+    canvas.height = Math.max(1, Math.round(canvas.clientHeight * dpr));
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.uniform2f(uR, canvas.width, canvas.height);
+    aspect = canvas.width / canvas.height;
+    const f = 1 / Math.tan(FOV / 2), near = 0.05, far = 50;
+    gl.uniformMatrix4fv(U.uProj, false, new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) / (near - far), -1, 0, 0, (2 * far * near) / (near - far), 0]));
   };
-  let mx = 0, my = 0, sx = 0, sy = 0, visible = true, rafId = 0;
-  const t0 = performance.now() - 20000;
-  const draw = (now) => {
-    sx += (mx - sx) * 0.04; sy += (my - sy) * 0.04;
-    gl.uniform1f(uT, (now - t0) / 1000);
-    gl.uniform2f(uM, sx, sy);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  };
-  const loop = (now) => { draw(now); rafId = visible && !document.hidden ? requestAnimationFrame(loop) : 0; };
-  const start = () => { if (!rafId && !reduceMotion) rafId = requestAnimationFrame(loop); };
-
   resize();
-  draw(performance.now());
-  window.addEventListener('resize', () => { resize(); draw(performance.now()); }, { passive: true });
-  window.addEventListener('pointermove', (e) => { mx = e.clientX / window.innerWidth - 0.5; my = 0.5 - e.clientY / window.innerHeight; }, { passive: true });
-  document.addEventListener('visibilitychange', start);
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) start(); }).observe(canvas);
-  start();
-}
 
-/* ============ ESFERA DE DADOS 3D ============ */
-function initSphere() {
-  const canvas = $('#dataSphere');
-  const ctx = canvas?.getContext('2d');
-  if (!ctx) return;
+  // Matrizes 3x3 em ordem de coluna
+  const mul = (A, B) => { const C = new Array(9); for (let c = 0; c < 3; c++) for (let r = 0; r < 3; r++) C[c * 3 + r] = A[r] * B[c * 3] + A[3 + r] * B[c * 3 + 1] + A[6 + r] * B[c * 3 + 2]; return C; };
+  const rx = (a) => { const c = Math.cos(a), s = Math.sin(a); return [1, 0, 0, 0, c, s, 0, -s, c]; };
+  const ry = (a) => { const c = Math.cos(a), s = Math.sin(a); return [c, 0, -s, 0, 1, 0, s, 0, c]; };
+  const rz = (a) => { const c = Math.cos(a), s = Math.sin(a); return [c, s, 0, -s, c, 0, 0, 0, 1]; };
 
-  const mobile = window.innerWidth < 768;
-  const N = mobile ? 220 : 480;
-  const pts = [];
-  const golden = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < N; i++) {
-    const y = 1 - (i / (N - 1)) * 2;
-    const r = Math.sqrt(1 - y * y);
-    const t = golden * i;
-    pts.push([Math.cos(t) * r, y, Math.sin(t) * r]);
-  }
-  const th2 = (mobile ? 0.25 : 0.17) ** 2;
-  const links = [];
-  for (let i = 0; i < N; i++) {
-    for (let j = i + 1; j < N; j++) {
-      const dx = pts[i][0] - pts[j][0], dy = pts[i][1] - pts[j][1], dz = pts[i][2] - pts[j][2];
-      if (dx * dx + dy * dy + dz * dz < th2) links.push(i, j);
-    }
-  }
+  gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.CULL_FACE);
 
-  const proj = new Float32Array(N * 3);
-  let w = 0, h = 0, cx = 0, cy = 0, R = 0;
-  let mx = 0, my = 0, sx = 0, sy = 0, rot = 0, visible = true, rafId = 0;
+  const draw = (cam, time, lock) => {
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    if (!ready) return;
+    const tanH = Math.tan(FOV / 2);
+    gl.uniformMatrix3fv(U.uRot, false, new Float32Array(mul(rz(cam.roll), mul(rx(cam.pitch), ry(cam.yaw)))));
+    // Desloca a Terra para que o ponto voltado à câmera (o alvo, no fim) caia em (cx, cy) da tela
+    gl.uniform3f(U.uOff, cam.cx * (cam.dist - 1) * tanH * aspect, cam.cy * (cam.dist - 1) * tanH, -cam.dist);
+    gl.uniform1f(U.uTime, time);
+    gl.uniform1f(U.uLock, lock);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, tex);
 
-  const resize = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 3);
-    w = canvas.clientWidth; h = canvas.clientHeight;
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const lg = w >= 1024;
-    cx = lg ? w * 0.74 : w * 0.5;
-    cy = lg ? h * 0.52 : h * 0.4;
-    R = lg ? Math.min(w * 0.27, h * 0.46) : Math.min(w * 0.55, h * 0.3);
-    canvas.style.opacity = lg ? '.7' : '.3';
+    // Terra
+    gl.disable(gl.BLEND); gl.depthMask(true); gl.cullFace(gl.BACK);
+    gl.uniform1f(U.uScale, 1); gl.uniform1f(U.uAtmo, 0);
+    gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+    // Atmosfera (faces de trás de uma esfera maior, aditiva)
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.depthMask(false); gl.cullFace(gl.FRONT);
+    gl.uniform1f(U.uScale, 1.055); gl.uniform1f(U.uAtmo, 1);
+    gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+    gl.depthMask(true);
   };
 
-  const draw = () => {
-    ctx.clearRect(0, 0, w, h);
-    sx += (mx - sx) * 0.05; sy += (my - sy) * 0.05;
-    const ay = rot + sx * 0.7, ax = 0.35 + sy * 0.45;
-    const cA = Math.cos(ay), sA = Math.sin(ay), cB = Math.cos(ax), sB = Math.sin(ax);
-    const f = 2.6;
-    for (let i = 0; i < N; i++) {
-      const [x, y, z] = pts[i];
-      const x1 = x * cA - z * sA, z1 = x * sA + z * cA;
-      const y1 = y * cB - z1 * sB, z2 = y * sB + z1 * cB;
-      const s = f / (f + z2);
-      proj[i * 3] = cx + x1 * R * s;
-      proj[i * 3 + 1] = cy + y1 * R * s;
-      proj[i * 3 + 2] = z2;
-    }
-    ctx.lineWidth = 0.6;
-    for (let k = 0; k < links.length; k += 2) {
-      const a = links[k] * 3, b = links[k + 1] * 3;
-      const alpha = ((1 - (proj[a + 2] + proj[b + 2]) / 2) / 2) * 0.3;
-      if (alpha < 0.03) continue;
-      ctx.strokeStyle = `rgba(96,165,250,${alpha.toFixed(3)})`;
-      ctx.beginPath(); ctx.moveTo(proj[a], proj[a + 1]); ctx.lineTo(proj[b], proj[b + 1]); ctx.stroke();
-    }
-    for (let i = 0; i < N; i++) {
-      const depth = (1 - proj[i * 3 + 2]) / 2;
-      const accent = i % 23 === 0;
-      ctx.fillStyle = accent ? `rgba(16,185,129,${(0.4 + depth * 0.6).toFixed(3)})` : `rgba(191,219,254,${(0.12 + depth * 0.75).toFixed(3)})`;
-      ctx.beginPath();
-      ctx.arc(proj[i * 3], proj[i * 3 + 1], (accent ? 1.5 : 0.5) + depth * 1.4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  };
-  const loop = () => { rot += 0.0016; draw(); rafId = visible && !document.hidden ? requestAnimationFrame(loop) : 0; };
-  const start = () => { if (!rafId && !reduceMotion) rafId = requestAnimationFrame(loop); };
-
-  resize(); draw();
-  window.addEventListener('resize', () => { resize(); draw(); }, { passive: true });
-  window.addEventListener('pointermove', (e) => { mx = e.clientX / window.innerWidth - 0.5; my = e.clientY / window.innerHeight - 0.5; }, { passive: true });
-  document.addEventListener('visibilitychange', start);
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) start(); }).observe(canvas);
-  start();
+  return { draw, resize };
 }
 
-/* ============ PARALLAX / TILT / MAGNÉTICO / CURSOR / LINHA DO TEMPO ============ */
-function initParallax() {
-  const media = $('#heroMedia'), sphere = $('#dataSphere');
-  if (!media || reduceMotion) return;
+/* ============ MOVIMENTOS DE CÂMERA NAS FOTOS (dolly-in guiado pela rolagem) ============ */
+function initDolly() {
+  const imgs = $$('[data-dolly]');
+  if (!imgs.length || reduceMotion) return;
   let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = Math.min(window.scrollY, window.innerHeight);
-      media.style.transform = `translate3d(0, ${y * 0.3}px, 0)`;
-      if (sphere) sphere.style.transform = `translate3d(0, ${y * 0.15}px, 0)`;
-      ticking = false;
+  const update = () => {
+    const vh = window.innerHeight;
+    imgs.forEach((img) => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const p = clamp((vh - r.top) / (vh + r.height));
+      img.style.transform = `scale(${(1.22 - 0.16 * p).toFixed(4)}) translate3d(${((p - 0.5) * -1.6).toFixed(2)}%, ${((p - 0.5) * -3).toFixed(2)}%, 0)`;
     });
-  }, { passive: true });
-}
-
-function initTilt() {
-  if (reduceMotion || !finePointer) return;
-  $$('[data-tilt]').forEach((el) => {
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform = `rotateY(${(px * 8).toFixed(2)}deg) rotateX(${(-py * 8).toFixed(2)}deg)`;
-    });
-    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-  });
-}
-
-function initMagnetic() {
-  if (reduceMotion || !finePointer) return;
-  $$('[data-magnetic]').forEach((el) => {
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
-      el.style.transform = `translate(${(dx * 0.18).toFixed(1)}px, ${(dy * 0.3).toFixed(1)}px)`;
-    });
-    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-  });
-}
-
-function initCursorGlow() {
-  const glow = $('#cursorGlow');
-  if (!glow) return;
-  if (reduceMotion || !finePointer) { glow.remove(); return; }
-  let x = window.innerWidth / 2, y = window.innerHeight / 2, gx = x, gy = y, running = false;
-  const loop = () => {
-    gx += (x - gx) * 0.12; gy += (y - gy) * 0.12;
-    glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
-    if (Math.abs(x - gx) > 0.5 || Math.abs(y - gy) > 0.5) requestAnimationFrame(loop); else running = false;
+    ticking = false;
   };
-  window.addEventListener('pointermove', (e) => {
-    x = e.clientX; y = e.clientY; glow.style.opacity = '1';
-    if (!running) { running = true; requestAnimationFrame(loop); }
-  }, { passive: true });
-  document.documentElement.addEventListener('pointerleave', () => { glow.style.opacity = '0'; });
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
 }
 
 function initTimeline() {
   const tl = $('#timeline'), fill = $('#tlFill');
   if (!tl || !fill) return;
   if (reduceMotion) { fill.style.transform = 'none'; return; }
-  const lg = window.matchMedia('(min-width: 1024px)');
   const update = () => {
     const r = tl.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (window.innerHeight * 0.8 - r.top) / (r.height + window.innerHeight * 0.3)));
-    fill.style.transform = lg.matches ? `scaleX(${p})` : `scaleY(${p})`;
+    const p = clamp((window.innerHeight * 0.85 - r.top) / (r.height + window.innerHeight * 0.2));
+    fill.style.transform = `scaleX(${p.toFixed(3)})`;
   };
   update();
   window.addEventListener('scroll', update, { passive: true });
