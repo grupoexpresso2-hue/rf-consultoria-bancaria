@@ -10,6 +10,7 @@ Estética *Private Banking*: azul-marinho, marfim e dourado, com abertura cinema
 index.html              # página completa (HTML + CSS + JS)
 img/
   logo-rf.png           # logo RF / RF GROUP®
+  capa-reuniao.jpg      # foto de fundo da abertura
   dr-reinaldo.webp      # foto do responsável técnico
   dor-endividamento.jpg # foto da seção "Diagnóstico"
 ```
@@ -46,7 +47,6 @@ Para usar o domínio próprio (`rfconsultoriabancaria.com.br`), informe-o em **S
 
 ## Observações
 
-- A foto de fundo da abertura (`capa-reuniao.jpg`) é carregada do site atual (`rfconsultoriabancaria.com.br/img/`). Para o site não depender dele, salve essa imagem em `img/` e troque o endereço no `index.html`.
 - Os links de **Política de Privacidade** e **Termos de Uso** apontam para o site atual.
 - Percentuais e valores do site e do simulador são ilustrativos e não representam garantia de resultado.
 
